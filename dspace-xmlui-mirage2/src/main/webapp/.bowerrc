@@ -1,0 +1,7 @@
+{
+    "directory": "vendor",	
+	"proxy":"http://proxy.tse.jus.br:80",
+    "https-proxy":"http://proxy.tse.jus.br:80"
+
+
+}

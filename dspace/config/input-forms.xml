@@ -1,0 +1,2959 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE input-forms SYSTEM "input-forms.dtd">
+
+
+<input-forms>
+
+ <!-- The form-map maps collection handles to forms. DSpace does not       -->
+ <!-- require a collection name to be unique, not even within a community. -->
+ <!-- DSpace does however ensure that each collection's handle is unique.  -->
+ <!-- Form-map provides the means to associate a unique collection name    -->
+ <!-- with a form. The form-map also provides the special handle "default" -->
+ <!-- (which is never a collection), here mapped to "traditional". Any     -->
+ <!-- collection which does not appear in this map will be associated with -->
+ <!-- the mapping for handle "default".                                    -->
+
+ <form-map>
+   <name-map collection-handle="default" form-name="default" />
+   <name-map collection-handle="bdtse/2793" form-name="doutrina" />
+   <name-map collection-handle="bdtse/2796" form-name="paj" />
+ </form-map>
+
+                    
+
+ <form-definitions>
+
+  
+   <form name="default">
+			<page number="1">
+				<!-- Autor(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>author</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Autor(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) autor(es)</hint>
+					<required></required>
+				</field>
+					<!-- Biblioteca depositária-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Biblioteca depositária</label>
+					<input-type value-pairs-name="biblioteca">dropdown</input-type>
+					<hint>Informe o nome da Biblioteca depositária</hint>
+					<required></required>
+				</field>
+				
+							
+				
+					<!-- Orientador(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>advisor</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Orientador(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) Orientador(es)</hint>
+					<required></required>
+				</field>
+				<!-- Título -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Título</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o título</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+			
+				<!-- Outros títulos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier>alternative</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros títulos</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Título(s) anterior(es) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>replaces</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Título(s) anterior(es)</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+					<!-- ISBN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>isbn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISBN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- ISSN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>issn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISSN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>				
+								
+					<!-- Número de sistema (REJE) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>rejesys</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número de sistema (REJE)</label>
+					<input-type>onebox</input-type>
+					<hint>Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+					<!-- Edição -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>isversionof</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Edição</label>
+					<input-type>onebox</input-type>
+					<hint>Edição</hint>
+					<required></required>
+				</field>
+				
+					<!-- Data da Publicação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>issued</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Publicação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Publicação</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+					<!-- Data da Criação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>created</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Criação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Criação</hint>
+				</field>
+				<!-- Data da defesa -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>submitted</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data da Defesa</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Defesa</hint>
+				</field>
+					<!-- Local de publicação-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier>place</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Local de publicação</label>
+					<input-type>onebox</input-type>
+					<hint>Informar o local onde foi publicado</hint>
+					<required></required>
+				</field>
+					<!-- Editora -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Editora</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o nome da editora</hint>
+					<required></required>
+				</field>
+				<!-- Referência Bibliográfica -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>citation</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Referência bibliográfica</label>
+					<input-type>textarea</input-type>
+					<hint>Dados da fonte de publicação</hint>
+					<required></required>
+				</field>
+				
+					<!-- Duração/Dimensão -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>format</dc-element>
+					<dc-qualifier>extent</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tamanho/Duração</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o Tamanho/Duração </hint>
+				</field>
+					<!-- Licença -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>rights</dc-element>
+					<dc-qualifier>license</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Licença</label>
+					<input-type>textarea</input-type>
+					<hint>Informe o texto da licença</hint>
+					<required></required>
+				</field>
+				
+				
+				<!-- Série -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartofseries</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Série</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Tipo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>type</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tipo de documento</label>
+					<input-type value-pairs-name="repositorio_institucional_types">dropdown</input-type>
+					<hint>Informe o tipo de documento. Caso não encontre
+						correspondência, informe a opção "Outro"</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+				<!-- Idioma -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>language</dc-element>
+					<dc-qualifier>iso</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Idioma</label>
+					<input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+					<hint>Informe o idioma do item. Caso o idioma não esteja listado
+						informe a opção (N/A)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Assuntos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o assunto</hint>
+					<required>true</required>
+				</field>
+				<!-- Outros assuntos-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Termos que não estão no Tesauro</hint>
+					<required></required>
+				</field>
+				
+				<!-- Resumo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>abstract</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Resumo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Notas uri -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>uri</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link REJE</label>
+					<input-type>onebox</input-type>
+					<hint>Caso exista, fornecer o link da Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas de conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>tableofcontents</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas de conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+						<!-- Conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspart</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Conteudo link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspartlink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do Conteúdo</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link do conteúdo descrito no campo anterior</hint>
+					<required></required>
+				</field>
+				
+							<!-- In(Parte de) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartof</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!--  In(Parte de link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartoflink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link utilizado para associar a parte ao todo</hint>
+					<required></required>
+				</field>
+				
+					<!-- Periodicidade -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>accrualperiodicity</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Periodicidade</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+				
+					<!-- Número -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>number</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Ano/Volume -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>volume</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Ano/Volume</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+			
+			</page>
+		</form>
+		
+		 <form name="boletim">
+			<page number="1">
+				<!-- Autor(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>author</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Autor(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) autor(es)</hint>
+					<required></required>
+				</field>
+					<!-- Biblioteca depositária-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Biblioteca depositária</label>
+					<input-type value-pairs-name="biblioteca">dropdown</input-type>
+					<hint>Informe o nome da Biblioteca depositária</hint>
+					<required></required>
+				</field>
+				
+							
+				
+					<!-- Orientador(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>advisor</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Orientador(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) Orientador(es)</hint>
+					<required></required>
+				</field>
+				<!-- Título -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Título</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o título</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+			
+				<!-- Outros títulos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier>alternative</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros títulos</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Título(s) anterior(es) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>replaces</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Título(s) anterior(es)</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+					<!-- ISBN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>isbn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISBN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- ISSN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>issn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISSN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>				
+								
+					<!-- Número de sistema (REJE) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>rejesys</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número de sistema (REJE)</label>
+					<input-type>onebox</input-type>
+					<hint>Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+					<!-- Edição -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>isversionof</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Edição</label>
+					<input-type>onebox</input-type>
+					<hint>Edição</hint>
+					<required></required>
+				</field>
+				
+					<!-- Data da Publicação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>issued</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Publicação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Publicação</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+					<!-- Data da Criação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>created</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Criação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Criação</hint>
+				</field>
+				<!-- Data da defesa -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>submitted</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data da Defesa</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Defesa</hint>
+				</field>
+					<!-- Local de publicação-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier>place</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Local de publicação</label>
+					<input-type>onebox</input-type>
+					<hint>Informar o local onde foi publicado</hint>
+					<required></required>
+				</field>
+					<!-- Editora -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Editora</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o nome da editora</hint>
+					<required></required>
+				</field>
+				<!-- Referência Bibliográfica -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>citation</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Referência bibliográfica</label>
+					<input-type>textarea</input-type>
+					<hint>Dados da fonte de publicação</hint>
+					<required></required>
+				</field>
+				
+					<!-- Duração/Dimensão -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>format</dc-element>
+					<dc-qualifier>extent</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tamanho/Duração</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o Tamanho/Duração </hint>
+				</field>
+					<!-- Licença -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>rights</dc-element>
+					<dc-qualifier>license</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Licença</label>
+					<input-type>textarea</input-type>
+					<hint>Informe o texto da licença</hint>
+					<required></required>
+				</field>
+				
+				
+				<!-- Série -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartofseries</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Série</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Tipo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>type</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tipo de documento</label>
+					<input-type value-pairs-name="boletim_types">dropdown</input-type>
+					<hint>Informe o tipo de documento. Caso não encontre
+						correspondência, informe a opção "Outro"</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+				<!-- Idioma -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>language</dc-element>
+					<dc-qualifier>iso</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Idioma</label>
+					<input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+					<hint>Informe o idioma do item. Caso o idioma não esteja listado
+						informe a opção (N/A)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Assuntos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o assunto</hint>
+					<required>true</required>
+				</field>
+				<!-- Outros assuntos-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Termos que não estão no Tesauro</hint>
+					<required></required>
+				</field>
+				
+				<!-- Resumo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>abstract</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Resumo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Notas uri -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>uri</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link REJE</label>
+					<input-type>onebox</input-type>
+					<hint>Caso exista, fornecer o link da Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas de conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>tableofcontents</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas de conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+						<!-- Conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspart</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Conteudo link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspartlink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do Conteúdo</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link do conteúdo descrito no campo anterior</hint>
+					<required></required>
+				</field>
+				
+							<!-- In(Parte de) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartof</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!--  In(Parte de link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartoflink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link utilizado para associar a parte ao todo</hint>
+					<required></required>
+				</field>
+				
+					<!-- Periodicidade -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>accrualperiodicity</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Periodicidade</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+				
+					<!-- Número -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>number</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Ano/Volume -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>volume</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Ano/Volume</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+			
+			</page>
+		</form>
+		
+		<form name="doutrina">
+			<page number="1">
+				<!-- Autor(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>author</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Autor(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) autor(es)</hint>
+					<required></required>
+				</field>
+					<!-- Biblioteca depositária-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Biblioteca depositária</label>
+					<input-type value-pairs-name="biblioteca">dropdown</input-type>
+					<hint>Informe o nome da Biblioteca depositária</hint>
+					<required></required>
+				</field>
+				
+							
+				
+					<!-- Orientador(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>advisor</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Orientador(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) Orientador(es)</hint>
+					<required></required>
+				</field>
+				<!-- Título -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Título</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o título</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+			
+				<!-- Outros títulos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier>alternative</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros títulos</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Título(s) anterior(es) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>replaces</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Título(s) anterior(es)</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+					<!-- ISBN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>isbn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISBN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- ISSN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>issn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISSN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>				
+								
+					<!-- Número de sistema (REJE) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>rejesys</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número de sistema (REJE)</label>
+					<input-type>onebox</input-type>
+					<hint>Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+					<!-- Edição -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>isversionof</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Edição</label>
+					<input-type>onebox</input-type>
+					<hint>Edição</hint>
+					<required></required>
+				</field>
+				
+					<!-- Data da Publicação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>issued</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Publicação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Publicação</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+					<!-- Data da Criação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>created</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Criação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Criação</hint>
+				</field>
+				<!-- Data da defesa -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>submitted</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data da Defesa</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Defesa</hint>
+				</field>
+					<!-- Local de publicação-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier>place</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Local de publicação</label>
+					<input-type>onebox</input-type>
+					<hint>Informar o local onde foi publicado</hint>
+					<required></required>
+				</field>
+					<!-- Editora -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Editora</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o nome da editora</hint>
+					<required></required>
+				</field>
+				<!-- Referência Bibliográfica -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>citation</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Referência bibliográfica</label>
+					<input-type>textarea</input-type>
+					<hint>Dados da fonte de publicação</hint>
+					<required></required>
+				</field>
+				
+					<!-- Duração/Dimensão -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>format</dc-element>
+					<dc-qualifier>extent</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tamanho/Duração</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o Tamanho/Duração </hint>
+				</field>
+					<!-- Licença -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>rights</dc-element>
+					<dc-qualifier>license</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Licença</label>
+					<input-type>textarea</input-type>
+					<hint>Informe o texto da licença</hint>
+					<required></required>
+				</field>
+				
+				
+				<!-- Série -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartofseries</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Série</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Tipo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>type</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tipo de documento</label>
+					<input-type value-pairs-name="doutrina_types">dropdown</input-type>
+					<hint>Informe o tipo de documento. Caso não encontre
+						correspondência, informe a opção "Outro"</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+				<!-- Idioma -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>language</dc-element>
+					<dc-qualifier>iso</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Idioma</label>
+					<input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+					<hint>Informe o idioma do item. Caso o idioma não esteja listado
+						informe a opção (N/A)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Assuntos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o assunto</hint>
+					<required>true</required>
+				</field>
+				<!-- Outros assuntos-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Termos que não estão no Tesauro</hint>
+					<required></required>
+				</field>
+				
+				<!-- Resumo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>abstract</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Resumo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Notas uri -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>uri</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link REJE</label>
+					<input-type>onebox</input-type>
+					<hint>Caso exista, fornecer o link da Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas de conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>tableofcontents</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas de conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+						<!-- Conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspart</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Conteudo link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspartlink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do Conteúdo</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link do conteúdo descrito no campo anterior</hint>
+					<required></required>
+				</field>
+				
+							<!-- In(Parte de) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartof</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!--  In(Parte de link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartoflink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link utilizado para associar a parte ao todo</hint>
+					<required></required>
+				</field>
+				
+					<!-- Periodicidade -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>accrualperiodicity</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Periodicidade</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+				
+					<!-- Número -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>number</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Ano/Volume -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>volume</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Ano/Volume</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+			
+			</page>
+		</form>
+		
+		<form name="museu_do_voto">
+			<page number="1">
+				<!-- Autor(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>author</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Autor(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) autor(es)</hint>
+					<required></required>
+				</field>
+					<!-- Biblioteca depositária-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Biblioteca depositária</label>
+					<input-type value-pairs-name="biblioteca">dropdown</input-type>
+					<hint>Informe o nome da Biblioteca depositária</hint>
+					<required></required>
+				</field>
+				
+							
+				
+					<!-- Orientador(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>advisor</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Orientador(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) Orientador(es)</hint>
+					<required></required>
+				</field>
+				<!-- Título -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Título</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o título</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+			
+				<!-- Outros títulos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier>alternative</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros títulos</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Título(s) anterior(es) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>replaces</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Título(s) anterior(es)</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+					<!-- ISBN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>isbn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISBN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- ISSN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>issn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISSN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>				
+								
+					<!-- Número de sistema (REJE) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>rejesys</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número de sistema (REJE)</label>
+					<input-type>onebox</input-type>
+					<hint>Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+					<!-- Edição -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>isversionof</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Edição</label>
+					<input-type>onebox</input-type>
+					<hint>Edição</hint>
+					<required></required>
+				</field>
+				
+					<!-- Data da Publicação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>issued</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Publicação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Publicação</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+					<!-- Data da Criação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>created</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Criação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Criação</hint>
+				</field>
+				<!-- Data da defesa -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>submitted</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data da Defesa</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Defesa</hint>
+				</field>
+					<!-- Local de publicação-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier>place</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Local de publicação</label>
+					<input-type>onebox</input-type>
+					<hint>Informar o local onde foi publicado</hint>
+					<required></required>
+				</field>
+					<!-- Editora -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Editora</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o nome da editora</hint>
+					<required></required>
+				</field>
+				<!-- Referência Bibliográfica -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>citation</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Referência bibliográfica</label>
+					<input-type>textarea</input-type>
+					<hint>Dados da fonte de publicação</hint>
+					<required></required>
+				</field>
+				
+					<!-- Duração/Dimensão -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>format</dc-element>
+					<dc-qualifier>extent</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tamanho/Duração</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o Tamanho/Duração </hint>
+				</field>
+					<!-- Licença -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>rights</dc-element>
+					<dc-qualifier>license</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Licença</label>
+					<input-type>textarea</input-type>
+					<hint>Informe o texto da licença</hint>
+					<required></required>
+				</field>
+				
+				
+				<!-- Série -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartofseries</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Série</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Tipo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>type</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tipo de documento</label>
+					<input-type value-pairs-name="museu_do_voto_types">dropdown</input-type>
+					<hint>Informe o tipo de documento. Caso não encontre
+						correspondência, informe a opção "Outro"</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+				<!-- Idioma -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>language</dc-element>
+					<dc-qualifier>iso</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Idioma</label>
+					<input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+					<hint>Informe o idioma do item. Caso o idioma não esteja listado
+						informe a opção (N/A)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Assuntos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o assunto</hint>
+					<required>true</required>
+				</field>
+				<!-- Outros assuntos-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Termos que não estão no Tesauro</hint>
+					<required></required>
+				</field>
+				
+				<!-- Resumo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>abstract</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Resumo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Notas uri -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>uri</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link REJE</label>
+					<input-type>onebox</input-type>
+					<hint>Caso exista, fornecer o link da Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas de conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>tableofcontents</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas de conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+						<!-- Conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspart</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Conteudo link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspartlink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do Conteúdo</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link do conteúdo descrito no campo anterior</hint>
+					<required></required>
+				</field>
+				
+							<!-- In(Parte de) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartof</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!--  In(Parte de link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartoflink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link utilizado para associar a parte ao todo</hint>
+					<required></required>
+				</field>
+				
+					<!-- Periodicidade -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>accrualperiodicity</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Periodicidade</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+				
+					<!-- Número -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>number</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Ano/Volume -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>volume</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Ano/Volume</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+			
+			</page>
+		</form>
+		
+		<form name="ministros">
+			<page number="1">
+				<!-- Autor(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>author</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Autor(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) autor(es)</hint>
+					<required></required>
+				</field>
+					<!-- Biblioteca depositária-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Biblioteca depositária</label>
+					<input-type value-pairs-name="biblioteca">dropdown</input-type>
+					<hint>Informe o nome da Biblioteca depositária</hint>
+					<required></required>
+				</field>
+				
+							
+				
+					<!-- Orientador(es)-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>advisor</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Orientador(es)</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do(s) Orientador(es)</hint>
+					<required></required>
+				</field>
+				<!-- Título -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Título</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o título</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+			
+				<!-- Outros títulos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier>alternative</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros títulos</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Título(s) anterior(es) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>replaces</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Título(s) anterior(es)</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+				
+					<!-- ISBN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>isbn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISBN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- ISSN -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>issn</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>ISSN</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>				
+								
+					<!-- Número de sistema (REJE) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>rejesys</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número de sistema (REJE)</label>
+					<input-type>onebox</input-type>
+					<hint>Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+					<!-- Edição -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>isversionof</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Edição</label>
+					<input-type>onebox</input-type>
+					<hint>Edição</hint>
+					<required></required>
+				</field>
+				
+					<!-- Data da Publicação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>issued</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Publicação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Publicação</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+					<!-- Data da Criação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>created</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Criação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Criação</hint>
+				</field>
+				<!-- Data da defesa -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>submitted</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data da Defesa</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Defesa</hint>
+				</field>
+					<!-- Local de publicação-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier>place</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Local de publicação</label>
+					<input-type>onebox</input-type>
+					<hint>Informar o local onde foi publicado</hint>
+					<required></required>
+				</field>
+					<!-- Editora -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>publisher</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Editora</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o nome da editora</hint>
+					<required></required>
+				</field>
+				<!-- Referência Bibliográfica -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>citation</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Referência bibliográfica</label>
+					<input-type>textarea</input-type>
+					<hint>Dados da fonte de publicação</hint>
+					<required></required>
+				</field>
+				
+					<!-- Duração/Dimensão -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>format</dc-element>
+					<dc-qualifier>extent</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tamanho/Duração</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o Tamanho/Duração </hint>
+				</field>
+					<!-- Licença -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>rights</dc-element>
+					<dc-qualifier>license</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Licença</label>
+					<input-type>textarea</input-type>
+					<hint>Informe o texto da licença</hint>
+					<required></required>
+				</field>
+				
+				
+				<!-- Série -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartofseries</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Série</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Tipo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>type</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tipo de documento</label>
+					<input-type value-pairs-name="ministros_types">dropdown</input-type>
+					<hint>Informe o tipo de documento. Caso não encontre
+						correspondência, informe a opção "Outro"</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+				<!-- Idioma -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>language</dc-element>
+					<dc-qualifier>iso</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Idioma</label>
+					<input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+					<hint>Informe o idioma do item. Caso o idioma não esteja listado
+						informe a opção (N/A)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Assuntos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o assunto</hint>
+					<required>true</required>
+				</field>
+				<!-- Outros assuntos-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Termos que não estão no Tesauro</hint>
+					<required></required>
+				</field>
+				
+				<!-- Resumo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>abstract</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Resumo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Notas uri -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>uri</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link REJE</label>
+					<input-type>onebox</input-type>
+					<hint>Caso exista, fornecer o link da Rede de Biblioteca da Justiça Eleitoral</hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas de conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>tableofcontents</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas de conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+						<!-- Conteúdo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspart</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Conteúdo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Conteudo link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>haspartlink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do Conteúdo</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link do conteúdo descrito no campo anterior</hint>
+					<required></required>
+				</field>
+				
+							<!-- In(Parte de) -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartof</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!--  In(Parte de link -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>relation</dc-element>
+					<dc-qualifier>ispartoflink</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Link do In(Parte de)</label>
+					<input-type>onebox</input-type>
+					<hint>Fornecer o link utilizado para associar a parte ao todo</hint>
+					<required></required>
+				</field>
+				
+					<!-- Periodicidade -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>accrualperiodicity</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Periodicidade</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+				
+					<!-- Número -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>number</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+					<!-- Ano/Volume -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>volume</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Ano/Volume</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+			
+			</page>
+		</form>
+   
+   <form name="paj">
+     <page number="1">
+	 
+				<!-- Parecerista-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>author</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Parecerista</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome do Parecerista</hint>
+					<required></required>
+				</field>
+				
+				<!-- Título -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Título</label>
+					<input-type>onebox</input-type>
+					<hint>Informe o título</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+			
+				<!-- Outros títulos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>title</dc-element>
+					<dc-qualifier>alternative</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros títulos</label>
+					<input-type>onebox</input-type>
+					<hint>Preencha caso o item possua outro(s) título(s)</hint>
+					<required></required>
+				</field>
+					<!-- Unidade Responsável-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>contributor</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Unidade Responsável</label>
+					<input-type>name</input-type>
+					<hint>Informe o nome da Unidade Responsável</hint>
+					<required></required>
+				</field>
+				
+					<!-- Data da Criação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>created</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Criação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Criação</hint>
+				</field>
+				
+					<!-- Data da Publicação -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>date</dc-element>
+					<dc-qualifier>issued</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Data de Publicação</label>
+					<input-type>date</input-type>
+					<hint>Informe a Data de Publicação</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+				<!-- Referência Bibliográfica -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>identifier</dc-element>
+					<dc-qualifier>citation</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Referência bibliográfica</label>
+					<input-type>textarea</input-type>
+					<hint>Dados da fonte de publicação</hint>
+					<required></required>
+				</field>
+				<!-- Tipo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>type</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Tipo de documento</label>
+					<input-type value-pairs-name="repositorio_institucional_types">dropdown</input-type>
+					<hint>Informe o tipo de documento. Caso não encontre
+						correspondência, informe a opção "Outro"</hint>
+					<required>Este campo é de preenchimento obrigatório.</required>
+				</field>
+				
+					<!-- Número do paracer -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>parecer</dc-element>
+					<dc-qualifier>numero</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número do paracer</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required>true</required>
+				</field>
+					<!-- Número do processo-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>processo</dc-element>
+					<dc-qualifier>numero</dc-qualifier>
+					<repeatable>false</repeatable>
+					<label>Número do processo</label>
+					<input-type>onebox</input-type>
+					<hint>Número do processo administrativo do TSE tratado no parecer</hint>
+					<required>true</required>
+				</field>
+				
+				<!-- Idioma -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>language</dc-element>
+					<dc-qualifier>iso</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Idioma</label>
+					<input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+					<hint>Informe o idioma do item. Caso o idioma não esteja listado
+						informe a opção (N/A)</hint>
+					<required></required>
+				</field>
+				
+				<!-- Assuntos -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Assuntos</label>
+					<input-type>onebox</input-type>
+					<hint></hint>
+					<required>true</required>
+				</field>
+				<!-- Outros assuntos-->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>subject</dc-element>
+					<dc-qualifier>other</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Outros assuntos</label>
+					<input-type>onebox</input-type>
+					<hint>Termos que não estão no Tesauro</hint>
+					<required></required>
+				</field>
+				
+				<!-- Resumo -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier>abstract</dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Resumo</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+					<!-- Notas -->
+				<field>
+					<dc-schema>dc</dc-schema>
+					<dc-element>description</dc-element>
+					<dc-qualifier></dc-qualifier>
+					<repeatable>true</repeatable>
+					<label>Notas</label>
+					<input-type>textarea</input-type>
+					<hint></hint>
+					<required></required>
+				</field>
+				
+      
+      </page>
+    </form>
+ </form-definitions>
+
+
+ <!-- form-value-pairs populate dropdown and qualdrop-value lists.          -->
+ <!-- The form-value-pairs element holds child elements named 'value-pairs' -->
+ <!-- A 'value-pairs' element has a value-pairs-name and a dc-term          -->
+ <!-- attribute. The dc-term attribute specifies which to which Dublin Core -->
+ <!-- Term this set of value-pairs applies.                                 -->
+ <!--     Current dc-terms are: identifier-pairs, type-pairs, and           -->
+ <!--     language_iso-pairs. The name attribute matches a name             -->
+ <!--     in the form-map, above.                                           -->
+ <!-- A value-pair contains one 'pair' for each value displayed in the list -->
+ <!-- Each pair contains a 'displayed-value' element and a 'stored-value'   -->
+ <!-- element. A UI list displays the displayed-values, but the program     -->
+ <!-- stores the associated stored-values in the database.                  -->
+
+ <form-value-pairs>
+   <value-pairs value-pairs-name="common_identifiers" dc-term="identifier">
+     <pair>
+       <displayed-value>ISSN</displayed-value>
+       <stored-value>issn</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Outros</displayed-value>
+       <stored-value>outros</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>ISMN</displayed-value>
+       <stored-value>ismn</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Gov't Doc #</displayed-value>
+       <stored-value>govdoc</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>URI</displayed-value>
+       <stored-value>uri</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>ISBN</displayed-value>
+       <stored-value>isbn</stored-value>
+     </pair>
+   </value-pairs>
+   
+   <value-pairs value-pairs-name="biblioteca" dc-term="contributor">
+	 <pair>
+       <displayed-value>Tribunal Superior Eleitoral</displayed-value>
+       <stored-value>Tribunal Superior Eleitoral</stored-value>
+     </pair>
+	 
+	<pair>
+       <displayed-value>Tribunal Regional Eleitoral (AC)</displayed-value>
+       <stored-value>Tribunal Regional Eleitoral (AC)</stored-value>
+     </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(AL)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(AL)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(AP)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(AP)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(AM)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(AM)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(BA)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(BA)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(CE)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(CE)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(DF)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(DF)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(ES)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(ES)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(GO)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(GO)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(MA)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(MA)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(MT)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(MT)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(MS)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(MS)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(MG)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(MG)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(PA)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(PA)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(PB)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(PB)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(PR)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(PR)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(PE)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(PE)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(PI)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(PI)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(RJ)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(RJ)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(RN)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(RN)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(RS)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(RS)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(RO)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(RO)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(RR)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(RR)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(SC)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(SC)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(SP)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(SP)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(SE)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(SE)</stored-value>
+ </pair>
+
+<pair>
+<displayed-value>Tribunal Regional Eleitoral(TO)</displayed-value>
+ <stored-value>Tribunal Regional Eleitoral(TO)</stored-value>
+ </pair>
+
+
+   
+    </value-pairs>
+
+   <value-pairs value-pairs-name="common_types" dc-term="type">
+			<pair>
+				<displayed-value>Animação</displayed-value>
+				<stored-value>Animação</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Artigo</displayed-value>
+				<stored-value>Artigo</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Livro</displayed-value>
+				<stored-value>Livro</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Capítulo de livro</displayed-value>
+				<stored-value>Capítulo de livro</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Dataset</displayed-value>
+				<stored-value>Dataset</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Objeto de aprendizagem</displayed-value>
+				<stored-value>Objeto de aprendizagem</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Imagem</displayed-value>
+				<stored-value>Imagem</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Imagem, 3-D</displayed-value>
+				<stored-value>Imagem, 3-D</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Mapa</displayed-value>
+				<stored-value>Mapa</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Partitura</displayed-value>
+				<stored-value>Partitura</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Plano ou projeto</displayed-value>
+				<stored-value>Plano ou projeto</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Rascunho</displayed-value>
+				<stored-value>Rascunho</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Apresentação</displayed-value>
+				<stored-value>Apresentação</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Audio</displayed-value>
+				<stored-value>Audio</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Software</displayed-value>
+				<stored-value>Software</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Relatório técnico</displayed-value>
+				<stored-value>Relatório técnico</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Tese</displayed-value>
+				<stored-value>Tese</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Vídeo</displayed-value>
+				<stored-value>Vídeo</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Outro</displayed-value>
+				<stored-value>Outro</stored-value>
+			</pair>
+		</value-pairs>
+		
+			<value-pairs value-pairs-name="doutrina_types" dc-term="type">
+			
+			<pair>
+				<displayed-value>Artigo de revista</displayed-value>
+				<stored-value>Artigo de revista</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Bibliografia</displayed-value>
+				<stored-value>Bibliografia</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Capítulo de livro</displayed-value>
+				<stored-value>Capítulo de livro</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Discurso</displayed-value>
+				<stored-value>Discurso</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Dissertação</displayed-value>
+				<stored-value>Dissertação</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Entrevista</displayed-value>
+				<stored-value>Entrevista</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Livro</displayed-value>
+				<stored-value>Livro</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Mapa</displayed-value>
+				<stored-value>Mapa</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Palestra</displayed-value>
+				<stored-value>Palestra</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Periódico</displayed-value>
+				<stored-value>Periódico</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Prefácio</displayed-value>
+				<stored-value>Prefácio</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Preprint</displayed-value>
+				<stored-value>Preprint</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Reportagem</displayed-value>
+				<stored-value>Reportagem</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Sumário de livro</displayed-value>
+				<stored-value>Sumário de livro</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>TCC/Especialização</displayed-value>
+				<stored-value>TCC/Especialização</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Tese</displayed-value>
+				<stored-value>Tese</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Outro</displayed-value>
+				<stored-value>Outro</stored-value>
+			</pair>
+			
+		</value-pairs>
+		
+		
+		<value-pairs value-pairs-name="repositorio_institucional_types" dc-term="type">
+				<pair>
+				<displayed-value>Artigo de jornal</displayed-value>
+				<stored-value>Artigo de jornal</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Artigo de revista</displayed-value>
+				<stored-value>Artigo de revista</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Ata</displayed-value>
+				<stored-value>Ata</stored-value>
+			</pair>
+				<pair>
+				<displayed-value>Banner</displayed-value>
+				<stored-value>Banner</stored-value>
+			</pair>
+				<pair>
+				<displayed-value>Bibliografia</displayed-value>
+				<stored-value>Bibliografia</stored-value>
+			</pair>
+			
+				<pair>
+				<displayed-value>Boletim</displayed-value>
+				<stored-value>Boletim</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Cartaz</displayed-value>
+				<stored-value>Cartaz</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Cartilha</displayed-value>
+				<stored-value>Cartilha</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Capítulo de livro</displayed-value>
+				<stored-value>Capítulo de livro</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Discurso</displayed-value>
+				<stored-value>Discurso</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Dissertação</displayed-value>
+				<stored-value>Dissertação</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Entrevista</displayed-value>
+				<stored-value>Entrevista</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Folder</displayed-value>
+				<stored-value>Folder</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Livro</displayed-value>
+				<stored-value>Livro</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Logomarca</displayed-value>
+				<stored-value>Logomarca</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Mapa</displayed-value>
+				<stored-value>Mapa</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Palestra</displayed-value>
+				<stored-value>Palestra</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Parecer</displayed-value>
+				<stored-value>Parecer</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Prefácio</displayed-value>
+				<stored-value>Prefácio</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Preprint</displayed-value>
+				<stored-value>Preprint</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Programa de TV</displayed-value>
+				<stored-value>Programa de TV</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Reportagem</displayed-value>
+				<stored-value>Reportagem</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Sumário de livro</displayed-value>
+				<stored-value>Sumário de livro</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>TCC/Especialização</displayed-value>
+				<stored-value>TCC/Especialização</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Tese</displayed-value>
+				<stored-value>Tese</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Vídeo</displayed-value>
+				<stored-value>Vídeo</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Outro</displayed-value>
+				<stored-value>Outro</stored-value>
+			</pair>
+			
+		</value-pairs>
+			<value-pairs value-pairs-name="museu_do_voto_types" dc-term="type">
+				<pair>
+				<displayed-value>Artigo de jornal</displayed-value>
+				<stored-value>Artigo de jornal</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Artigo de revista</displayed-value>
+				<stored-value>Artigo de revista</stored-value>
+			</pair>					
+				
+			<pair>
+				<displayed-value>Cartaz</displayed-value>
+				<stored-value>Cartaz</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Cartilha</displayed-value>
+				<stored-value>Cartilha</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Catálogo</displayed-value>
+				<stored-value>Catálogo</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Discurso</displayed-value>
+				<stored-value>Discurso</stored-value>
+			</pair>
+						
+			<pair>
+				<displayed-value>Entrevista</displayed-value>
+				<stored-value>Entrevista</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Folder</displayed-value>
+				<stored-value>Folder</stored-value>
+			</pair>
+				<pair>
+				<displayed-value>Imagem</displayed-value>
+				<stored-value>Imagem</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Livro</displayed-value>
+				<stored-value>Livro</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Objeto de aprendizagem</displayed-value>
+				<stored-value>Objeto de aprendizagem</stored-value>
+			</pair>			
+			<pair>
+				<displayed-value>Reportagem</displayed-value>
+				<stored-value>Reportagem</stored-value>
+			</pair>			
+			<pair>
+				<displayed-value>Vídeo</displayed-value>
+				<stored-value>Vídeo</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Outro</displayed-value>
+				<stored-value>Outro</stored-value>
+			</pair>
+			
+		</value-pairs>
+		
+		<value-pairs value-pairs-name="boletim_types" dc-term="type">
+				<pair>
+				<displayed-value>Boletim</displayed-value>
+				<stored-value>Boletim</stored-value>
+			</pair>
+			
+			
+		</value-pairs>
+		
+			<value-pairs value-pairs-name="ministros_types" dc-term="type">
+				<pair>
+				<displayed-value>Artigo de jornal</displayed-value>
+				<stored-value>Artigo de jornal</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Artigo de revista</displayed-value>
+				<stored-value>Artigo de revista</stored-value>
+			</pair>		
+				<pair>
+				<displayed-value>Currículo</displayed-value>
+				<stored-value>Currículo</stored-value>
+			</pair>				
+			
+			<pair>
+				<displayed-value>Discurso</displayed-value>
+				<stored-value>Discurso</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Dissertação</displayed-value>
+				<stored-value>Dissertação</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Fotografia</displayed-value>
+				<stored-value>Fotografia</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Jurisprudência</displayed-value>
+				<stored-value>Jurisprudência</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Livro</displayed-value>
+				<stored-value>Livro</stored-value>
+			</pair>
+			
+			<pair>
+				<displayed-value>Palestra</displayed-value>
+				<stored-value>Palestra</stored-value>
+			</pair>			
+			<pair>
+				<displayed-value>Preprint</displayed-value>
+				<stored-value>Preprint</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Programa de TV</displayed-value>
+				<stored-value>Programa de TV</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Reportagem</displayed-value>
+				<stored-value>Reportagem</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Sumário de livro</displayed-value>
+				<stored-value>Sumário de livro</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>TCC/Especialização</displayed-value>
+				<stored-value>TCC/Especialização</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Tese</displayed-value>
+				<stored-value>Tese</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Vídeo</displayed-value>
+				<stored-value>Vídeo</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Outro</displayed-value>
+				<stored-value>Outro</stored-value>
+			</pair>
+			</value-pairs>
+		
+		<value-pairs value-pairs-name="access_types" dc-term="type">
+			<pair>
+				<displayed-value>Acesso Livre</displayed-value>
+				<stored-value>Acesso Livre</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Acesso Restrito</displayed-value>
+				<stored-value>Acesso Restrito</stored-value>
+			</pair>
+		</value-pairs>
+		
+			<value-pairs value-pairs-name="quality_types" dc-term="type">
+			<pair>
+				<displayed-value>N/A</displayed-value>
+				<stored-value></stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Ruim</displayed-value>
+				<stored-value>Ruim</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Regular</displayed-value>
+				<stored-value>Regular</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Bom</displayed-value>
+				<stored-value>Bom</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Ótimo</displayed-value>
+				<stored-value>Ótimo</stored-value>
+			</pair>
+
+		</value-pairs>
+
+  <!-- Listagem de idiomas -->
+		<value-pairs value-pairs-name="common_iso_languages"
+			dc-term="language_iso">
+			<pair>
+				<displayed-value>N/A</displayed-value>
+				<stored-value></stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Português</displayed-value>
+				<stored-value>pt_BR</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Inglês (Estados Unidos)</displayed-value>
+				<stored-value>en_US</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Inglês</displayed-value>
+				<stored-value>en</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Espanhol</displayed-value>
+				<stored-value>es</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Alemão</displayed-value>
+				<stored-value>de</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Francês</displayed-value>
+				<stored-value>fr</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Italiano</displayed-value>
+				<stored-value>it</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Japonês</displayed-value>
+				<stored-value>ja</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Chinês</displayed-value>
+				<stored-value>zh</stored-value>
+			</pair>			
+			<pair>
+				<displayed-value>(Outro)</displayed-value>
+				<stored-value>other</stored-value>
+			</pair>
+		</value-pairs>
+
+		<value-pairs value-pairs-name="common_countries" dc-term="location_country">
+			<pair>
+				<displayed-value>N/A</displayed-value>
+				<stored-value></stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Brasil</displayed-value>
+				<stored-value>BR</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Estados Unidos</displayed-value>
+				<stored-value>US</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Inglaterra</displayed-value>
+				<stored-value>GB</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Espanha</displayed-value>
+				<stored-value>ES</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Alemanha</displayed-value>
+				<stored-value>DE</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>França</displayed-value>
+				<stored-value>FR</stored-value>
+			</pair>
+			<pair>
+				<displayed-value>Italia</displayed-value>
+				<stored-value>IT</stored-value>
+			</pair>
+
+		</value-pairs>
+
+ </form-value-pairs>
+
+</input-forms>
