@@ -29,6 +29,7 @@
             <item>
                 <xsl:copy-of select="dri:item/dri:field[@id='aspect.discovery.SimpleSearch.field.scope']"/>
                 <xsl:copy-of select="dri:item/dri:field[@id='aspect.discovery.SimpleSearch.field.query']"/>
+				 <xsl:copy-of select="dri:item[@id='aspect.discovery.SimpleSearch.item.did-you-mean']"/>
                 <xsl:copy-of select="dri:item/dri:field[@id='aspect.discovery.SimpleSearch.field.submit']"/>
             </item>
         </list>
@@ -39,11 +40,11 @@
             <xsl:call-template name="copy-attributes"/>
             <field id="aspect.discovery.SimpleSearch.field.submit_reset_filter" rend="discovery-reset-filter-button" n="submit_reset_filter" type="button">
                 <params/>
-                <value type="raw">Reset</value> <!-- TODO i18n-->
+                <value type="raw">Limpar</value> <!-- TODO i18n-->
             </field>
             <field rend="discovery-add-filter-button visible-xs " n="submit_add_filter" type="button">
                 <params/>
-                <value type="raw">Add New Filter</value> <!-- TODO i18n-->
+                <value type="raw">Adicionar novo filtro</value> <!-- TODO i18n-->
             </field>
             <xsl:apply-templates/>
         </cell>
@@ -62,11 +63,12 @@
             <div rend="clearfix">
                 <p rend="pull-right">
                     <xref target="#" rend="show-advanced-filters">
-                        <xsl:text>Show Advanced Filters</xsl:text>
+                        <xsl:text>Pesquisa Avançada</xsl:text>
                         <!-- TODO i18n-->
                     </xref>
                     <xref target="#" rend="hide-advanced-filters hidden">
-                        <xsl:text>Hide Advanced Filters</xsl:text>
+                        <!-- <xsl:text>Hide Advanced Filters</xsl:text> -->
+						  <xsl:text>Pesquisa Avançada</xsl:text>
                         <!-- TODO i18n-->
                     </xref>
                 </p>
@@ -75,17 +77,17 @@
             <xsl:apply-templates/>
         </div>
     </xsl:template>
-
-    <xsl:template match="dri:div[@id='aspect.discovery.SimpleSearch.div.discovery-filters-wrapper']">
-        <div>
-            <xsl:call-template name="copy-attributes"/>
-            <xsl:attribute name="rend">
-                <xsl:value-of select="@rend"/>
-                <xsl:text> hidden</xsl:text>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </div>
-    </xsl:template>
+<!-- Comentado para desabilitadar o hide dos controles de busca -->
+    <!-- <xsl:template match="dri:div[@id='aspect.discovery.SimpleSearch.div.discovery-filters-wrapper']"> -->
+        <!-- <div> -->
+            <!-- <xsl:call-template name="copy-attributes"/> -->
+            <!-- <xsl:attribute name="rend"> -->
+                <!-- <xsl:value-of select="@rend"/> -->
+                <!-- <xsl:text> hidden</xsl:text> -->
+            <!-- </xsl:attribute> -->
+            <!-- <xsl:apply-templates/> -->
+        <!-- </div> -->
+    <!-- </xsl:template> -->
 
     <xsl:template match="dri:div[@rend='controls-gear-wrapper' and @n='search-controls-gear']//dri:item[contains(@rend, 'gear-head')]">
         <item>

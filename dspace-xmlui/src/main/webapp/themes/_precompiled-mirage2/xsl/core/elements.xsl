@@ -97,10 +97,10 @@
                 <xsl:with-param name="class">
                     <xsl:value-of select="$class"/>
                     <xsl:if test="$head_count = 1 and not($class='ds-option-set-head')">
-                        <xsl:text> page-header</xsl:text>
+                        <xsl:text> page-header</xsl:text>						 
                     </xsl:if>
                     <xsl:if test="$is_first_head_on_page">
-                        <xsl:text> first-page-header</xsl:text>
+                        <xsl:text> first-page-header</xsl:text>				
                     </xsl:if>
                 </xsl:with-param>
             </xsl:call-template>

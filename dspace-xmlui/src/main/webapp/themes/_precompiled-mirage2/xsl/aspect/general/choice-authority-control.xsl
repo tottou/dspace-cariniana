@@ -40,7 +40,7 @@
       <xsl:param name="confIndicator" select="''"/>
       <input type="button" name="{concat('lookup_',@n)}" class="pull-right ds-button-field btn btn-default ds-add-button" >
         <xsl:attribute name="value">
-          <xsl:text>Lookup</xsl:text>
+          <xsl:text>Buscar</xsl:text>
           <!--<xsl:if test="contains(dri:params/@operations,'add')">-->
             <!--<xsl:text> &amp; Add</xsl:text>-->
           <!--</xsl:if>-->
@@ -390,9 +390,9 @@
 
     <!-- This inline JS must be added to the popup page for choice lookups -->
     <xsl:template name="choiceLookupPopUpSetup">
-      <script type="text/javascript">
-        var form = document.getElementById('aspect_general_ChoiceLookupTransformer_div_lookup');
-        DSpaceChoicesSetup(form);
+      <script type="text/javascript">	   
+        var form = document.getElementById('aspect_general_ChoiceLookupTransformer_div_lookup');		
+        DSpaceChoicesSetup(form);		
       </script>
     </xsl:template>
 
@@ -459,6 +459,10 @@
 
     <!--DSpace Value Lookup modal-->
     <xsl:template match="dri:body[dri:div[@n='lookup']]" mode="modal">
+	 <script type="text/javascript">	   
+        document.getElementById('aspect_general_ChoiceLookupTransformer_field_text1').readOnly = true;	
+		document.getElementById('aspect_general_ChoiceLookupTransformer_field_more').style.visibility = 'hidden';			
+      </script>
     <div class="modal-dialog">
         <div class="modal-content">
             <xsl:variable name="header" select="dri:div/dri:head"/>

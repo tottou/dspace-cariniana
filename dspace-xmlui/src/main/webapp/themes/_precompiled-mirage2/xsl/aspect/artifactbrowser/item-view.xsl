@@ -1,13 +1,4 @@
 
-<!--
-    Rendering specific to the item display page.
-
-    Author: art.lowel at atmire.com
-    Author: lieven.droogmans at atmire.com
-    Author: ben at atmire.com
-    Author: Alexey Maslov
-
--->
 
 <xsl:stylesheet
     xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
@@ -92,7 +83,7 @@
                         <th><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-file</i18n:text></th>
                         <th><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-size</i18n:text></th>
                         <th><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-format</i18n:text></th>
-                        <th><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-view</i18n:text></th>
+                        <th><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-view</i18n:text></th>					
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -109,18 +100,18 @@
     <xsl:template match="dim:dim" mode="itemSummaryView-DIM">
         <div class="item-summary-view-metadata">
         <xsl:call-template name="itemSummaryView-DIM-title"/>
-            <xsl:choose>
-                <xsl:when test="confman:getProperty('mirage2','snazy') = 'true'">
+          <!--   <xsl:choose>
+                <xsl:when test="confman:getProperty('mirage2','snazy') = 'false'">
                     <div class="col-sm-12">
-                        <!-- Add a snazy presentation section -->
+                      
                     
 
                         <div class="row">
-                            <!-- Left Column -->
+         
                             <div class="col-sm-12">
                                 <xsl:call-template name="itemSummaryView-DIM-subject"/>
                                 <xsl:call-template name="itemSummaryView-DIM-abstract"/>
-                                <xsl:call-template name="itemSummaryView-DIM-description"/>
+                                <xsl:call-template name="itemSummaryView-DIM-description"/>								
                                 <xsl:call-template name="itemSummaryView-DIM-URI"/>
                                 <xsl:call-template name="itemSummaryView-DIM-tombstone"/>
                                 <xsl:call-template name="itemSummaryView-collections"/>
@@ -140,13 +131,13 @@
                                 </xsl:if>
                             </div>
 
-                            <!-- Right Column -->
+                            
                            
                         </div>
                     </div>
 					    <xsl:call-template name="itemSummaryView-DIM-file-section-snazy"/>
                 </xsl:when>
-                <xsl:otherwise>
+                <xsl:otherwise> -->
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="row">
@@ -157,23 +148,34 @@
                                     <xsl:call-template name="itemSummaryView-DIM-file-section"/>
                                 </div>
                             </div>
-                            <xsl:call-template name="itemSummaryView-DIM-date"/>
-                            <xsl:call-template name="itemSummaryView-DIM-authors"/>
+                            <!-- <xsl:call-template name="itemSummaryView-DIM-date"/> -->
+                            <!-- <xsl:call-template name="itemSummaryView-DIM-authors"/> -->
+							      <xsl:call-template name="itemSummaryView-collections"/>
                             <xsl:if test="$ds_item_view_toggle_url != ''">
-                                <xsl:call-template name="itemSummaryView-show-full"/>
+                                <!-- <xsl:call-template name="itemSummaryView-show-full"/> -->
                             </xsl:if>
                         </div>
                         <div class="col-sm-8">
-                            <xsl:call-template name="itemSummaryView-DIM-subject"/>
-                            <xsl:call-template name="itemSummaryView-DIM-abstract"/>
-                            <xsl:call-template name="itemSummaryView-DIM-description"/>
-                            <xsl:call-template name="itemSummaryView-DIM-URI"/>
-                            <xsl:call-template name="itemSummaryView-DIM-tombstone"/>
-                            <xsl:call-template name="itemSummaryView-collections"/>
+						<xsl:call-template name="itemSummaryView-DIM-titulo"/>                     
+							
+							
+							
+                            <xsl:call-template name="itemSummaryView-DIM-abstract"/>			
+						
+							
+                            <xsl:call-template name="itemSummaryView-DIM-description"/>														
+                            <!-- <xsl:call-template name="itemSummaryView-DIM-URI"/> -->						
+							<xsl:call-template name="itemSummaryView-DIM-subject"/>							
+							<xsl:call-template name="itemSummaryView-DIM-referencia"/>
+                            <xsl:call-template name="itemSummaryView-DIM-tombstone"/>                      
+							<xsl:call-template name="itemSummaryView-DIM-file-section-snazy"/>
+						
+						
                         </div>
                     </div>
-                </xsl:otherwise>
-            </xsl:choose>
+					<xsl:call-template name="itemSummaryView-DIM-videoaudio-section-snazy"/>
+                <!-- </xsl:otherwise> -->
+            <!-- </xsl:choose> -->
         </div>
     </xsl:template>
 
@@ -247,7 +249,8 @@
     <xsl:template name="itemSummaryView-DIM-abstract">
         <xsl:if test="dim:field[@element='description' and @qualifier='abstract']">
             <div class="simple-item-view-description item-page-field-wrapper table">
-                <h5 class="visible-xs"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text></h5>
+                <!-- <h5 class="visible-xs"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text></h5> -->
+			<h5 ><i18n:text>xmlui.dri2xhtml.METS-1.0.item-abstract</i18n:text></h5>
                 <div>
                     <xsl:for-each select="dim:field[@element='description' and @qualifier='abstract']">
                         <xsl:choose>
@@ -271,11 +274,12 @@
     </xsl:template>
 
     <xsl:template name="itemSummaryView-DIM-description">
-        <xsl:if test="dim:field[@element='description' and not(@qualifier)]">
-            <div class="simple-item-view-description item-page-field-wrapper table">
-                <h5><i18n:text>xmlui.metadata.dc.description</i18n:text></h5>
-                <div>
-                    <xsl:for-each select="dim:field[@element='description' and not(@qualifier)]">
+	
+	      
+	<xsl:if test="(dim:field[@element='description' and not(@qualifier)]) and not (dim:field[@element='description' and @qualifier='uri'])">
+	<div class="simple-item-view-description item-page-field-wrapper table">
+	<h5>Notas</h5>
+	 <xsl:for-each select="dim:field[@element='description' and not(@qualifier)]">
                         <xsl:choose>
                             <xsl:when test="node()">
                                 <xsl:copy-of select="node()"/>
@@ -288,13 +292,233 @@
                             <div class="spacer">&#160;</div>
                         </xsl:if>
                     </xsl:for-each>
+					</div>
+	</xsl:if>
+
+        <xsl:if test="(dim:field[@element='description' and @qualifier='uri']) and (dim:field[@element='description' and not(@qualifier)])">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                <!-- <h5><i18n:text>xmlui.dri2xhtml.METS-1.0.item-description</i18n:text></h5> -->
+			    <h5>Notas</h5>
+                <div> 				
+				<!-- tight deadlines... -->
+			   <xsl:variable name="var1" select="dim:field[@element='description' and not(@qualifier)][1]/node()"/>
+			   <xsl:variable name="var2" select="dim:field[@element='description' and not(@qualifier)][2]/node()"/>
+			   <xsl:variable name="var3" select="dim:field[@element='description' and not(@qualifier)][3]/node()"/>
+			   <xsl:variable name="var4" select="dim:field[@element='description' and not(@qualifier)][4]/node()"/>
+			   <xsl:variable name="var5" select="dim:field[@element='description' and not(@qualifier)][5]/node()"/>
+				
+				<xsl:for-each select="dim:field[@element='description' and @qualifier='uri']">
+				         <a>
+                            <xsl:attribute name="href">
+                                <xsl:copy-of select="./node()"/>
+                            </xsl:attribute>         							
+									
+							 
+							 
+						 <xsl:if test="position()=1">                      
+						<varoutput>
+							<xsl:value-of select="$var1"/>
+						</varoutput>
+						   </xsl:if>
+						    <xsl:if test="position()=2">                      
+						<varoutput>
+							<xsl:value-of select="$var2"/>
+						</varoutput>
+						   </xsl:if>
+						   <xsl:if test="position()=3">                      
+						<varoutput>
+							<xsl:value-of select="$var3"/>
+						</varoutput>
+						   </xsl:if> 
+						    <xsl:if test="position()=4">                      
+						<varoutput>
+							<xsl:value-of select="$var4"/>
+						</varoutput>
+						   </xsl:if> 
+						    <xsl:if test="position()=5">                      
+						<varoutput>
+							<xsl:value-of select="$var5"/>
+						</varoutput>
+						   </xsl:if> 
+						<!-- <xsl:text>teste</xsl:text>	 -->
+						<!-- <xsl:value-of select="position()"/>	 -->				
+                        <!-- <xsl:copy-of select="./node()"/> -->
+                        </a>
+						 <br/>	
+                       <!--  <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='uri']) != 0">
+                            <br/>						
+                        </xsl:if> -->
+						
+                    </xsl:for-each>
+					
+					
+				<!-- 
+                     <xsl:for-each select="dim:field[@element='description' and not(@qualifier)]">
+                        <xsl:choose>
+                            <xsl:when test="node()">
+                                <xsl:copy-of select="node()"/>									 
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>&#160;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="count(following-sibling::dim:field[@element='description' and not(@qualifier)]) != 0">
+                            <div class="spacer">&#160;</div>
+                        </xsl:if>
+                    </xsl:for-each> 
                     <xsl:if test="count(dim:field[@element='description' and not(@qualifier)]) &gt; 1">
                         <div class="spacer">&#160;</div>
-                    </xsl:if>
+                    </xsl:if>  -->
+					
                 </div>
             </div>
-        </xsl:if>
+        </xsl:if> 		
+		 <xsl:if test="dim:field[@element='relation' and @qualifier='haspart']">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                <h5><i18n:text>Conteúdo</i18n:text></h5>
+                <div> 
+					<!-- tight deadlines... -->
+			   <xsl:variable name="var1" select="dim:field[@element='relation' and @qualifier='haspart'][1]/node()"/>
+			   <xsl:variable name="var2" select="dim:field[@element='relation' and @qualifier='haspart'][2]/node()"/>
+			   <xsl:variable name="var3" select="dim:field[@element='relation' and @qualifier='haspart'][3]/node()"/>
+			   <xsl:variable name="var4" select="dim:field[@element='relation' and @qualifier='haspart'][4]/node()"/>
+			   <xsl:variable name="var5" select="dim:field[@element='relation' and @qualifier='haspart'][5]/node()"/>
+			   <xsl:variable name="var6" select="dim:field[@element='relation' and @qualifier='haspart'][6]/node()"/>
+			   <xsl:variable name="var7" select="dim:field[@element='relation' and @qualifier='haspart'][7]/node()"/>
+			   <xsl:variable name="var8" select="dim:field[@element='relation' and @qualifier='haspart'][8]/node()"/>
+			   <xsl:variable name="var9" select="dim:field[@element='relation' and @qualifier='haspart'][9]/node()"/>
+			   <xsl:variable name="var10" select="dim:field[@element='relation' and @qualifier='haspart'][10]/node()"/>
+			   
+				
+				<xsl:for-each select="dim:field[@element='relation' and @qualifier='haspartlink']">
+				         <a>
+                            <xsl:attribute name="href">
+                                <xsl:copy-of select="./node()"/>
+                            </xsl:attribute>
+                            <span class="glyphicon glyphicon-play"></span>
+							
+							
+							
+						 <xsl:if test="position()=1">                      
+						<varoutput>
+							<xsl:value-of select="$var1"/>
+						</varoutput>
+						   </xsl:if>
+						    <xsl:if test="position()=2">                      
+						<varoutput>
+							<xsl:value-of select="$var2"/>
+						</varoutput>
+						   </xsl:if>
+						   <xsl:if test="position()=3">                      
+						<varoutput>
+							<xsl:value-of select="$var3"/>
+						</varoutput>
+						   </xsl:if> 
+						    <xsl:if test="position()=4">                      
+						<varoutput>
+							<xsl:value-of select="$var4"/>
+						</varoutput>
+						   </xsl:if> 
+						    <xsl:if test="position()=5">                      
+						<varoutput>
+							<xsl:value-of select="$var5"/>
+						</varoutput>
+						   </xsl:if> 
+						   <xsl:if test="position()=6">                      
+						<varoutput>
+							<xsl:value-of select="$var6"/>
+						</varoutput>
+						   </xsl:if>
+						    <xsl:if test="position()=7">                      
+						<varoutput>
+							<xsl:value-of select="$var7"/>
+						</varoutput>
+						   </xsl:if>
+						   <xsl:if test="position()=8">                      
+						<varoutput>
+							<xsl:value-of select="$var8"/>
+						</varoutput>
+						   </xsl:if> 
+						    <xsl:if test="position()=9">                      
+						<varoutput>
+							<xsl:value-of select="$var9"/>
+						</varoutput>
+						   </xsl:if> 
+						    <xsl:if test="position()=10">                      
+						<varoutput>
+							<xsl:value-of select="$var10"/>
+						</varoutput>
+						   </xsl:if> 				
+						   
+                        </a>
+						 <br/>	                      
+						
+                    </xsl:for-each>
+				
+				
+				
+				 </div> 
+				</div>
+			 </xsl:if>
+				
+				 <xsl:if test="dim:field[@element='relation' and @qualifier='ispartof']">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                <h5><i18n:text>In</i18n:text></h5>
+                <div> 
+				
+			   <xsl:variable name="var1" select="dim:field[@element='relation' and @qualifier='ispartof'][1]/node()"/>
+			   <xsl:variable name="var2" select="dim:field[@element='relation' and @qualifier='ispartof'][2]/node()"/>
+			   <xsl:variable name="var3" select="dim:field[@element='relation' and @qualifier='ispartof'][3]/node()"/>
+			   <xsl:variable name="var4" select="dim:field[@element='relation' and @qualifier='ispartof'][4]/node()"/>
+			   <xsl:variable name="var5" select="dim:field[@element='relation' and @qualifier='ispartof'][5]/node()"/>
+				
+				<xsl:for-each select="dim:field[@element='relation' and @qualifier='ispartoflink']">
+				         <a>
+                            <xsl:attribute name="href">
+                                <xsl:copy-of select="./node()"/>
+                            </xsl:attribute>
+                         
+							
+							
+							
+						 <xsl:if test="position()=1">                      
+						<varoutput>
+							<xsl:value-of select="$var1"/>
+						</varoutput>
+						   </xsl:if>
+						    <xsl:if test="position()=2">                      
+						<varoutput>
+							<xsl:value-of select="$var2"/>
+						</varoutput>
+						   </xsl:if>
+						   <xsl:if test="position()=3">                      
+						<varoutput>
+							<xsl:value-of select="$var3"/>
+						</varoutput>
+						   </xsl:if> 
+						    <xsl:if test="position()=4">                      
+						<varoutput>
+							<xsl:value-of select="$var4"/>
+						</varoutput>
+						   </xsl:if> 
+						    <xsl:if test="position()=5">                      
+						<varoutput>
+							<xsl:value-of select="$var5"/>
+						</varoutput>
+						   </xsl:if> 					
+                        </a>
+						 <br/>	                      
+						
+                    </xsl:for-each>
+				
+				
+				
+				 </div> 
+				</div>
+			 </xsl:if>
     </xsl:template>
+	
+	 
 
     <xsl:template name="itemSummaryView-DIM-authors">
         <xsl:if test="dim:field[@element='contributor'][@qualifier='author' and descendant::text()] or dim:field[@element='creator' and descendant::text()] or dim:field[@element='contributor' and descendant::text()]">
@@ -373,12 +597,68 @@
             </div>
         </xsl:if>
     </xsl:template>
+	
+	
+
+	
+	    <xsl:template name="itemSummaryView-DIM-titulo">
+          <xsl:if test="dim:field[@element='type' and descendant::text()]">
+            <div class="item-tipo">
+              
+                <xsl:for-each select="dim:field[@element='type']">
+                    <xsl:copy-of select="substring(./node(),1,20)"/>
+                    <xsl:if test="count(following-sibling::dim:field[@element='type']) != 0">
+                        <br/>
+                    </xsl:if>
+                </xsl:for-each>
+            </div>
+        </xsl:if>
+		       <xsl:if test="dim:field[@element='title' and descendant::text()]">
+            <div class="item-titulo">
+              
+               <xsl:for-each select="dim:field[@element='title' and not(@qualifier)]">   <!--remover and not(@qualifier) para habilitar outro título -->
+                    <xsl:copy-of select="./node()"/>
+                    <xsl:if test="count(following-sibling::dim:field[@element='type']) != 0">
+                        <br/>
+                    </xsl:if>
+                </xsl:for-each>				
+            </div>
+        </xsl:if>
+		 <div class="item-autoredata">
+			<xsl:if test="dim:field[@element='contributor' and @qualifier='author' and descendant::text()]">
+         
+            
+                <xsl:for-each select="dim:field[@element='contributor' and @qualifier='author']">
+                    <xsl:copy-of select="./node()"/>					
+                    <xsl:if test="count(following-sibling::dim:field[@element='date' and @qualifier='issued']) != 0">
+                        <text> | </text>
+                    </xsl:if>
+                </xsl:for-each>
+				
+           
+        </xsl:if>
+		
+		<xsl:if test="dim:field[@element='date' and @qualifier='issued' and descendant::text()]">
+       
+               
+                <xsl:for-each select="dim:field[@element='date' and @qualifier='issued']">
+                    <xsl:copy-of select="substring(./node(),1,4)"/>
+                    <xsl:if test="count(following-sibling::dim:field[@element='date' and @qualifier='issued']) != 0">
+                         <text> | </text>
+                    </xsl:if>
+                </xsl:for-each>
+           
+        </xsl:if>
+		 </div>
+		
+		   <br/>
+    </xsl:template>
 
     <xsl:template name="itemSummaryView-DIM-subject">
         <xsl:if test="dim:field[@element='subject' and not(@qualifier) and descendant::text()]">
             <div class="simple-item-view-date word-break item-page-field-wrapper table">
                 <h5>
-                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-subject</i18n:text>
+                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-subject</i18n:text><text>(s)</text>
                 </h5>
                 <span>
                     <xsl:if test="count(dim:field[@element='subject' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='subject' and @qualifier='abstract']) &gt; 1)">
@@ -387,10 +667,13 @@
                     <xsl:for-each select="dim:field[@element='subject' and not(@qualifier)]">
                         <a>
                             <xsl:attribute name="href">
-                                <xsl:value-of select="$context-path"/>
+                              <!--   <xsl:value-of select="$context-path"/>
                                 <xsl:text>/browse?value=</xsl:text>
                                 <xsl:value-of select="url:encode(./node())" />
-                                <xsl:text>&amp;type=subject</xsl:text>
+                                <xsl:text>&amp;type=subject</xsl:text> -->
+								<xsl:value-of select="$context-path"/>
+                                <xsl:text>/discover?filtertype_1=subject&amp;filter_relational_operator_1=equals&amp;filter_1=</xsl:text>
+                                <xsl:value-of select="./node()" />                              
                             </xsl:attribute>
                             <xsl:copy-of select="./node()"/>
                         </a>
@@ -405,6 +688,248 @@
             </div>
         </xsl:if>
     </xsl:template>
+	
+	    <xsl:template name="itemSummaryView-DIM-subject-outros">
+        <xsl:if test="dim:field[@element='subject' and @qualifier='other' and descendant::text()]">
+            <div class="simple-item-view-date word-break item-page-field-wrapper table">
+                <h5>
+                   Outros assuntos
+                </h5>
+                <span>
+                    <xsl:if test="count(dim:field[@element='subject' and not(@qualifier)]) &gt; 1 and not(count(dim:field[@element='subject' and @qualifier='abstract']) &gt; 1)">
+                        <span class="spacer">&#160;</span>
+                    </xsl:if>
+                    <xsl:for-each select="dim:field[@element='subject' and @qualifier='other']">
+                        <a>
+                            <xsl:attribute name="href">
+                              <!--   <xsl:value-of select="$context-path"/>
+                                <xsl:text>/browse?value=</xsl:text>
+                                <xsl:value-of select="url:encode(./node())" />
+                                <xsl:text>&amp;type=subject</xsl:text> -->
+								<xsl:value-of select="$context-path"/>
+                                <xsl:text>/discover?filtertype_1=subject&amp;filter_relational_operator_1=equals&amp;filter_1=</xsl:text>
+                                <xsl:value-of select="./node()" />                              
+                            </xsl:attribute>
+                            <xsl:copy-of select="./node()"/>
+                        </a>
+                        <xsl:if test="count(following-sibling::dim:field[@element='subject' and not(@qualifier)]) != 0">
+                            <span class="spacer">; </span>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='subject' and not(@qualifier)]) &gt; 1">
+                        <span class="spacer">&#160;</span>
+                    </xsl:if>
+                </span>
+            </div>
+        </xsl:if>
+    </xsl:template>
+	
+	
+	  <xsl:template name="itemSummaryView-DIM-buttons">
+	   <!-- <xsl:variable name="urlE" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath']"/> -->
+	      <xsl:variable name="urlE" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata/lol"/>
+	  <div class="row">
+	    <div class="col-xs-6">	  
+	  <div class="dentro">
+	        <a>
+                <xsl:attribute name="href"><xsl:value-of select="$ds_item_view_toggle_url"/></xsl:attribute>
+                
+                <xsl:text>Exibir registro completo </xsl:text>
+                <!-- <i18n:text>xmlui.ArtifactBrowser.ItemViewer.show_full</i18n:text> -->
+            </a>     
+	  </div>
+	   </div>
+	     <div class="col-xs-6">	  	
+	  <div class="dentro">
+	    <script>
+        window.onload = function() {
+            document.getElementById('statistics').href = window.location.href+"/statistics";
+        };
+    </script>
+	        <a id="statistics">
+                <!-- <xsl:attribute name="href"><xsl:value-of select="$ds_item_view_toggle_url"/></xsl:attribute> -->
+                
+                <!-- <xsl:text>Visualizar estatísticas </xsl:text> -->
+				
+				<!-- <xsl:attribute name="href"><xsl:value-of select="$urlE"/></xsl:attribute> -->
+            
+								
+								<xsl:text>Visualizar estatísticas </xsl:text>
+            </a>
+      </div>	
+	    </div>
+	  </div>	
+    </xsl:template>
+	
+		
+	    <xsl:template name="itemSummaryView-DIM-edicao">
+           <xsl:if test="dim:field[@element='relation' and @qualifier='isversionof']">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                 <h5>
+                  Edição
+                </h5>
+                <div>
+                    <xsl:for-each select="dim:field[@element='relation' and @qualifier='isversionof']">
+                        <xsl:choose>
+                            <xsl:when test="node()">
+                                <xsl:copy-of select="node()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>&#160;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="count(following-sibling::dim:field[@element='relation' and @qualifier='isversionof']) != 0">
+                            <div class="spacer">&#160;</div>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='relation' and @qualifier='isversionof']) &gt; 1">
+                        <div class="spacer">&#160;</div>
+                    </xsl:if>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
+	
+		    <xsl:template name="itemSummaryView-DIM-referencia">
+           <xsl:if test="dim:field[@element='identifier' and @qualifier='citation']">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                 <h5>
+                  Referência
+                </h5>
+                <div>
+                    <xsl:for-each select="dim:field[@element='identifier' and @qualifier='citation']">
+                        <xsl:choose>
+                            <xsl:when test="node()">
+                                <xsl:copy-of select="node()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>&#160;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='citation']) != 0">
+                            <div class="spacer">&#160;</div>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='identifier' and @qualifier='citation']) &gt; 1">
+                        <div class="spacer">&#160;</div>
+                    </xsl:if>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
+	
+			    <xsl:template name="itemSummaryView-DIM-orientador">
+           <xsl:if test="dim:field[@element='contributor' and @qualifier='advisor']">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                 <h5>
+                  Orientador(es)
+                </h5>
+                <div>
+                    <xsl:for-each select="dim:field[@element='contributor' and @qualifier='advisor']">
+                        <xsl:choose>
+                            <xsl:when test="node()">
+                                <xsl:copy-of select="node()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>&#160;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="count(following-sibling::dim:field[@element='contributor' and @qualifier='advisor']) != 0">
+                            <div class="spacer">&#160;</div>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='contributor' and @qualifier='advisor']) &gt; 1">
+                        <div class="spacer">&#160;</div>
+                    </xsl:if>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
+	
+			    <xsl:template name="itemSummaryView-DIM-titulo-anterior">
+           <xsl:if test="dim:field[@element='relation' and @qualifier='replaces']">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                 <h5>
+                  Título(s) Anterior(es)
+                </h5>
+                <div>
+                    <xsl:for-each select="dim:field[@element='relation' and @qualifier='replaces']">
+                        <xsl:choose>
+                            <xsl:when test="node()">
+                                <xsl:copy-of select="node()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>&#160;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="count(following-sibling::dim:field[@element='relation' and @qualifier='replaces']) != 0">
+                            <div class="spacer">&#160;</div>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='relation' and @qualifier='replaces']) &gt; 1">
+                        <div class="spacer">&#160;</div>
+                    </xsl:if>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
+	
+			    <xsl:template name="itemSummaryView-DIM-periodicidade">
+           <xsl:if test="dim:field[@element='accrualperiodicity' and not(@qualifier)]">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                 <h5>
+                  Periodicidade
+                </h5>
+                <div>
+                    <xsl:for-each select="dim:field[@element='accrualperiodicity' and not(@qualifier)]">
+                        <xsl:choose>
+                            <xsl:when test="node()">
+                                <xsl:copy-of select="node()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>&#160;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="count(following-sibling::dim:field[@element='accrualperiodicity' and not(@qualifier)]) != 0">
+                            <div class="spacer">&#160;</div>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='accrualperiodicity' and not(@qualifier)]) &gt; 1">
+                        <div class="spacer">&#160;</div>
+                    </xsl:if>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>
+	
+			    <xsl:template name="itemSummaryView-DIM-notas-conteudo">
+           <xsl:if test="dim:field[@element='description' and @qualifier='tableofcontents']">
+            <div class="simple-item-view-description item-page-field-wrapper table">
+                 <h5>
+                 Notas de conteúdo
+                </h5>
+                <div>
+                    <xsl:for-each select="dim:field[@element='description' and @qualifier='tableofcontents']">
+                        <xsl:choose>
+                            <xsl:when test="node()">
+                                <xsl:copy-of select="node()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>&#160;</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="count(following-sibling::dim:field[@element='description' and @qualifier='tableofcontents']) != 0">
+                            <div class="spacer">&#160;</div>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(dim:field[@element='description' and @qualifier='tableofcontents']) &gt; 1">
+                        <div class="spacer">&#160;</div>
+                    </xsl:if>
+                </div>
+            </div>
+        </xsl:if>
+    </xsl:template>	
+
 
     <!-- Used for SCSL -->
     <xsl:template name="itemSummaryView-DIM-tombstone">
@@ -499,8 +1024,8 @@
 
         <xsl:if test="dim:field[@element='notes' and not(@qualifier) and descendant::text()]">
             <div class="simple-item-view-date word-break item-page-field-wrapper table">
-                <h5>
-                    Notes:
+                <h5>				
+                    Notas:
                 </h5>
                 <xsl:if test="count(dim:field[@element='notes' and not(@qualifier) and descendant::text()]) &gt; 1 and not(count(dim:field[@element='notes' and @qualifier='abstract' and descendant::text()]) &gt; 1)">
                     <div class="spacer">&#160;</div>
@@ -520,7 +1045,7 @@
 
 <xsl:template name="itemSummaryView-show-full">
         <div class="simple-item-view-show-full item-page-field-wrapper table">
-            <h5>Metadata</h5> <!-- TODO i18n -->
+            <h5>Metadata</h5> <!-- TODO i18n -->			
             <a>
                 <xsl:attribute name="href"><xsl:value-of select="$ds_item_view_toggle_url"/></xsl:attribute>
                 <span class="glyphicon glyphicon-list-alt"></span>
@@ -534,17 +1059,28 @@
     <xsl:template name="itemSummaryView-collections">
         <xsl:if test="$document//dri:referenceSet[@id='aspect.artifactbrowser.ItemViewer.referenceSet.collection-viewer']">
             <div class="simple-item-view-collections item-page-field-wrapper table">
-                <h5>
-                    <xsl:text>Collections</xsl:text>    <!--TODO i18n-->
+                <h5>                   
+					 <i18n:text>xmlui.administrative.collection.general.collection_trail</i18n:text>
                 </h5>
                 <xsl:apply-templates select="$document//dri:referenceSet[@id='aspect.artifactbrowser.ItemViewer.referenceSet.collection-viewer']/dri:reference"/>
             </div>
         </xsl:if>
+		
+		  
+	 
+	        <a>
+                <xsl:attribute name="href"><xsl:value-of select="$ds_item_view_toggle_url"/></xsl:attribute>
+                
+                <xsl:text>Exibir registro completo </xsl:text>
+                <!-- <i18n:text>xmlui.ArtifactBrowser.ItemViewer.show_full</i18n:text> -->
+            </a>     
+	 
+	  
     </xsl:template>
 
     <xsl:template name="itemSummaryView-DIM-file-section">
         <xsl:if test="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file">
-            <xsl:choose>
+ <!--            <xsl:choose>
                 <xsl:when
                         test="count(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file) > 1">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -556,11 +1092,11 @@
                         <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
                     </a>
                 </xsl:otherwise>
-            </xsl:choose>
+            </xsl:choose> -->
 
             <div class="collapse" id="collapseExample">
                 <!-- show files when only 1, collapsed when files > 1 -->
-                <xsl:choose>
+             <!--    <xsl:choose>
                     <xsl:when
                             test="count(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file) > 1">
                         <xsl:attribute name="class">
@@ -572,7 +1108,7 @@
                             <xsl:text>collapse in</xsl:text>
                         </xsl:attribute>
                     </xsl:otherwise>
-                </xsl:choose>
+                </xsl:choose> -->
 
                 <xsl:variable name="label-1">
                     <xsl:choose>
@@ -1014,18 +1550,64 @@
             - Otherwise show the snazy file list
         -->
         <xsl:choose>
-            <xsl:when test="(count(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]) > 2) and (dim:field[@mdschema='dc' and @element='type'][not(@qualifier)]/text() != 'Image')">
-            <div id="BookReader"></div>
-            </xsl:when>
+		<!-- Ajustar o bookreader -->
+            <!-- <xsl:when test="(count(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]) > 2) and (dim:field[@mdschema='dc' and @element='type'][not(@qualifier)]/text() != 'Image')"> -->
+            <!-- <div id="BookReader"></div> -->
+            <!-- </xsl:when> -->
+	<xsl:when test="(count(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('application/octet-stream', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]) > 0)"> 
+        
+		  </xsl:when> 			
             <xsl:otherwise>
                 <ul id="file_list" class="snazy ds-file-list no-js">
                     <xsl:apply-templates select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file" mode="snazy">
-                        <xsl:with-param name="context" select="$context"/>
+                        <xsl:with-param name="context" select="$context"/>						
                     </xsl:apply-templates>
                 </ul>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+	
+	    <xsl:template name="itemSummaryView-DIM-videoaudio-section-snazy">
+        <xsl:param name="context" />
+        <xsl:param name="primaryBitstream" />
+
+        <!-- If there are images, maybe show the archive.org viewer first -->
+        <span id="ds-firstpage-side">
+            <xsl:choose>
+                <xsl:when test="dim:field[@mdschema='ds' and @element='firstpage' and @qualifier='side']">
+                    <xsl:attribute name="data-side">
+                        <xsl:text>left</xsl:text>
+                    </xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+        </span>
+
+        <!-- Show File Section:
+            - Show a bookreader when there are more than one accessible images in the bitstreams
+            - Otherwise show the snazy file list
+        -->
+        <xsl:choose>
+		<!-- Ajustar o bookreader -->
+            <!-- <xsl:when test="(count(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('image/jpeg', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]) > 2) and (dim:field[@mdschema='dc' and @element='type'][not(@qualifier)]/text() != 'Image')"> -->
+            <!-- <div id="BookReader"></div> -->
+            <!-- </xsl:when> -->
+			
+			
+			<xsl:when test="(count(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file[contains('application/octet-stream', @MIMETYPE) and not(contains(mets:FLocat[@LOCTYPE='URL']/@xlink:href,'isAllowed=n'))]) > 0)"> 
+           <br/>
+		   <ul id="file_list" class="snazy ds-file-list no-js">
+                    <xsl:apply-templates select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='LICENSE']/mets:file" mode="snazy">
+                        <xsl:with-param name="context" select="$context"/>
+                    </xsl:apply-templates>
+                </ul>
+		  </xsl:when> 
+            <xsl:otherwise>
+               
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+	
+	
 
     <xsl:template match="mets:file" mode="snazy">
         <xsl:variable name="videoplayer" select="'video/webm video/mp4 video/mpeg application/octet-stream'" />
@@ -1036,6 +1618,7 @@
         <xsl:variable name="googledocsviewer" select="'application/jsjsjsj'" />
         <xsl:variable name="embedwithfallback" select="'application/x-pdf application/pdf'" />
         <xsl:variable name="image" select="'image/jpeg'"/>
+		<xsl:variable name="tiff" select="'image/tiff'"/>
         <xsl:variable name="mview">
             <xsl:choose>
                 <xsl:when test="contains($googleplayer, @MIMETYPE)">
@@ -1062,6 +1645,9 @@
                 <xsl:when test="contains($image, @MIMETYPE)">
                     <xsl:text>image</xsl:text>
                 </xsl:when>
+				 <xsl:when test="contains($tiff, @MIMETYPE)">
+                    <xsl:text>tiff</xsl:text>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:text>default</xsl:text>
                 </xsl:otherwise>
@@ -1087,6 +1673,8 @@
                 <xsl:if test="(position() mod 2 = 1)"> odd</xsl:if>
             </xsl:attribute>
             <!--<xsl:text>Filename: </xsl:text>-->
+			
+			  <div class="col-sm-8">
             <div class="file-item file-link file-name">
                 <span class="label">Arquivo:</span>
                 <a>
@@ -1097,33 +1685,47 @@
                 </a>
             </div>
 
-            <xsl:if test="mets:FLocat[@LOCTYPE='URL']/@xlink:label and not(mets:FLocat[@LOCTYPE='URL']/@xlink:label = '')">
+<!--             <xsl:if test="mets:FLocat[@LOCTYPE='URL']/@xlink:label and not(mets:FLocat[@LOCTYPE='URL']/@xlink:label = '')">
                 <div class="file-item file-link file-name">
                     <span class="label">Descrição:</span>
                     <xsl:choose>
                         <xsl:when test="string-length(mets:FLocat[@LOCTYPE='URL']/@xlink:label) &gt; 60 ">
-                            <!-- print out the truncated value followed by "..." -->
+                            
                             <xsl:value-of select="substring(mets:FLocat[@LOCTYPE='URL']/@xlink:label ,0, 60)"/>...
                         </xsl:when>
                         <xsl:otherwise>
-                            <!-- otherwise print out the whole, un-truncated string -->
+                            
                             <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </div>
-            </xsl:if>
+            </xsl:if> -->
 
-            <div class="slide-arrow show">
+    <!--         <div class="slide-arrow show">
                 <div class="showhide" data-toggle="modal">
-                    <!-- Button trigger modal -->
+              
                     <xsl:attribute name="data-target">
                         <xsl:text>#myModal_</xsl:text>
                         <xsl:value-of select="@ID"/>
                     </xsl:attribute>
-                    Mostrar arquivo
+                    Visualizar
                 </div>
             </div>
-
+			
+			    <div class="slide-arrow show">
+				
+                <div class="showhide">
+                 
+                      <a>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                    </xsl:attribute>
+                   Baixar
+                </a>
+                    
+                </div>
+            </div>	 -->		
+			
 
             <xsl:attribute name="id">
                 <xsl:text>myModal_</xsl:text>
@@ -1131,20 +1733,58 @@
             </xsl:attribute>
 
             <div class="file-item file-mimetype">
-                <span class="label">Tipo:</span>
+                <span class="label">Formato:</span>
                 <span class="value">
                     <xsl:value-of select="@MIMETYPE" />
                 </span>
             </div>
 
             <div class="file-item last">
-                <span class="label">Tamanho do arquivo:</span>
+                <span class="label">Tamanho:</span>
                 <span class="value">
                     <xsl:call-template name="FileSizeFormatted">
                         <xsl:with-param name="FileSize" select="@SIZE"/>
                     </xsl:call-template>
                 </span>
             </div>
+			  </div>
+			  
+			  	  <div class="col-sm-2">
+				   <xsl:if test="($mview!='videoplayer')">
+					 <xsl:if test="($mview!='audioplayer')">
+						 <xsl:if test="($mview!='html5video')">
+						  <xsl:if test="($mview!='tiff')">
+			 		      <div class="slide-arrow show">
+                <div class="showhide" data-toggle="modal">
+                    <!-- Button trigger modal -->
+                    <xsl:attribute name="data-target">
+                        <xsl:text>#myModal_</xsl:text>
+                        <xsl:value-of select="@ID"/>
+                    </xsl:attribute>
+                     visualizar
+                </div>
+            </div>	
+			 </xsl:if>
+				</xsl:if>
+					</xsl:if>
+					 </xsl:if>
+			    </div>
+			    <div class="col-sm-2">
+				 <xsl:if test="$mview='image'">
+			   <a>
+                                    <xsl:attribute name="href">
+                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                    </xsl:attribute>
+                                    
+                               
+			   <img class="lazy smalldisplay" src="{concat($theme-path,'../_precompiled-mirage2/images/loading-lg.gif')}">
+                                <xsl:attribute name="data-original">
+                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                </xsl:attribute>
+                            </img> 
+						 </a>	 
+				   </xsl:if>
+			    </div>	
 
 
             <!-- Display file based on MIME type -->
@@ -1175,7 +1815,7 @@
                                 </a>
                             </video>
                         </xsl:when>
-                        <xsl:when test="$mview='videoplayer'">
+                        <xsl:when test="$mview='videoplayer'">							 
                             <div>
                                 <xsl:attribute name="id">
                                     <xsl:text>videoplayer_</xsl:text>
@@ -1190,8 +1830,8 @@
                                 width: "100%",
                                 aspectratio: "16:9"
                                 });
-                            </script>
-                        </xsl:when>
+                            </script>                       
+						 </xsl:when>
                         <xsl:when test="$mview='audioplayer'">
                             <div>
                                 <xsl:attribute name="id">
@@ -1270,22 +1910,71 @@
 
                         </xsl:when>
                         <xsl:when test="$mview='image'">
-                            <img class="lazy smalldisplay" src="{concat($theme-path,'../_precompiled-mirage2/images/loading-lg.gif')}">
+                         <!--    <img class="lazy smalldisplay" src="{concat($theme-path,'../_precompiled-mirage2/images/loading-lg.gif')}">
                                 <xsl:attribute name="data-original">
                                     <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                                 </xsl:attribute>
-                            </img>
+                            </img>  -->
+							         <div class="modal modal-lg fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                <xsl:attribute name="id">
+                                    <xsl:text>myModal_</xsl:text>
+                                    <xsl:value-of select="@ID"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="aria-labelledby">
+                                    <xsl:text>myModalLabel_</xsl:text>
+                                    <xsl:value-of select="@ID"/>
+                                </xsl:attribute>
+
+
+                                <div class="modal-dialog modal-dialog-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">
+                                                <xsl:attribute name="id">
+                                                    <xsl:text>myModalLabel_</xsl:text>
+                                                    <xsl:value-of select="@ID"/>
+                                                </xsl:attribute>
+
+                                                <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+										<!-- Solicitação do usuário, só foi possível setar style por aqui para não prejudicar outros do snazy-->
+                                            <object class="embedwithfallback" style="width:auto; height: auto;">
+                                                <xsl:attribute name="data">
+                                                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                                </xsl:attribute>
+                                                <xsl:attribute name="type">
+                                                    <xsl:value-of select="@MIMETYPE" />
+                                                </xsl:attribute>
+                                                <a>
+                                                    <xsl:attribute name="href">
+                                                        <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                                    </xsl:attribute>
+                                                    <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
+                                                </a>
+                                            </object>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </xsl:when>
                         <xsl:otherwise>
-                            <a>
+                     <!--        <a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                                 </xsl:attribute>
                                 <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
-                            </a>
+                            </a> -->
                         </xsl:otherwise>
                     </xsl:choose>
                 </div>
+				
+		
             </div>
         </li>
     </xsl:template>

@@ -1,15 +1,5 @@
 
-<!--
-    Main structure of the page, determines where
-    header, footer, body, navigation are structurally rendered.
-    Rendering of the header, footer, trail and alerts
 
-    Author: art.lowel at atmire.com
-    Author: lieven.droogmans at atmire.com
-    Author: ben at atmire.com
-    Author: Alexey Maslov
-
--->
 
 <xsl:stylesheet xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
                 xmlns:dri="http://di.tamu.edu/DRI/1.0/"
@@ -79,7 +69,8 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="buildHeader"/>
-                            <xsl:call-template name="buildTrail"/>
+							 <xsl:call-template name="NovoHeader"/>
+                           <!-- <xsl:call-template name="buildTrail"/>  -->
                             <!--javascript-disabled warning, will be invisible if javascript is enabled-->
                             <div id="no-js-warning-wrapper" class="hidden">
                                 <div id="no-js-warning">
@@ -95,12 +86,17 @@
                             <div id="main-container" class="container">
                                 <div class="row row-offcanvas row-offcanvas-right">
                                     <div class="horizontal-slider clearfix">
-                                        <div class="col-xs-12 col-sm-12 col-md-9 main-content">
-                                            <xsl:apply-templates select="*[not(self::dri:options)]"/>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+									 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                                             <xsl:apply-templates select="dri:options"/>
                                         </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-9 main-content">
+										
+									
+                         <xsl:apply-templates select="*[not(self::dri:options)]"/>	
+                
+
+                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +105,7 @@
                             <!--
                         The footer div, dropping whatever extra information is needed on the page. It will
                         most likely be something similar in structure to the currently given example. -->
-                            <xsl:call-template name="buildFooter"/>
+                           <xsl:call-template name="buildFooter"/> 
 
                         </xsl:otherwise>
                     </xsl:choose>
@@ -258,6 +254,15 @@
                 else
                 return true;
                 }
+				
+			function ver(element) {
+			    var x = document.getElementById(element);
+			if (x.style.display === "none") {
+					x.style.display = "block";
+				} else {
+					x.style.display = "none";
+				}
+			}
             </script>
 
             <xsl:text disable-output-escaping="yes">&lt;!--[if lt IE 9]&gt;
@@ -273,7 +278,13 @@
             <title>
                 <xsl:choose>
                     <xsl:when test="starts-with($request-uri, 'page/about')">
-                        <xsl:text>About This Repository</xsl:text>
+                        <xsl:text>Sobre A Biblioteca Digital da Cariniana</xsl:text>
+                    </xsl:when>
+					  <xsl:when test="starts-with($request-uri, 'page/sobre')">
+                        <xsl:text>Sobre A Biblioteca Digital da Cariniana</xsl:text>
+                    </xsl:when>
+					  <xsl:when test="starts-with($request-uri, 'page/faq')">
+                        <xsl:text>Perguntas frequentes</xsl:text>
                     </xsl:when>
                     <xsl:when test="not($page_title)">
                         <xsl:text>  </xsl:text>
@@ -295,7 +306,7 @@
                 <meta name="{@element}" content="{.}"></meta>
             </xsl:for-each>
 
-            <script src="//jwpsrv.com/library/tdG5srbdEeSqzQp+lcGdIw.js"></script>
+            <script src="//jwpsrv.com/library/tdG5srbdEeSqzQp+lcGdIw.js"></script> 
 	    <link rel="sitemap">
                 <xsl:attribute name="href">
                     <xsl:value-of
@@ -305,7 +316,7 @@
             </link>
 
             <!-- Add a google analytics script if the key is present -->
-            <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='google'][@qualifier='analytics']">
+           <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='google'][@qualifier='analytics']">
                 <script><xsl:text>
                     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -315,7 +326,7 @@
                     ga('create', '</xsl:text><xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='google'][@qualifier='analytics']"/><xsl:text>', 'auto');
                     ga('send', 'pageview');
                 </xsl:text></script>
-            </xsl:if>
+            </xsl:if> 
 
         </head>
     </xsl:template>
@@ -339,10 +350,11 @@
                         </button>
 
                         <a href="{$context-path}/" class="navbar-brand">
-                            <img src="{$theme-path}/images/DSpace-logo-line.svg" />
+                             <img src="{$theme-path}/images/logo_cariniana.png" />  
+							Biblioteca Digital da Cariniana
                         </a>
 
-
+<br/><br/><br/>
                         <div class="navbar-header pull-right visible-xs hidden-sm hidden-md hidden-lg">
                         <ul class="nav nav-pills pull-left ">
 
@@ -415,10 +427,11 @@
                               </div>
                     </div>
 
+
                     <div class="navbar-header pull-right hidden-xs">
-                        <ul class="nav navbar-nav pull-left">
+                    <!--     <ul class="nav navbar-nav pull-left">
                               <xsl:call-template name="languageSelection"/>
-                        </ul>
+                        </ul> -->
                         <ul class="nav navbar-nav pull-left">
                             <xsl:choose>
                                 <xsl:when test="/dri:document/dri:meta/dri:userMeta/@authenticated = 'yes'">
@@ -478,17 +491,18 @@
         </header>
 
     </xsl:template>
-
-
-    <!-- The header (distinct from the HTML head element) contains the title, subtitle, login box and various
-        placeholders for header images -->
-    <xsl:template name="buildTrail">
-        <div class="trail-wrapper">
-            <div class="container">
-                <div class="row">
-                    <!--TODO-->
-                    <!--<div class="col-xs-9 col-sm-10 col-md-12">-->
-                    <div class="col-xs-12">
+	
+	
+	
+	
+	<!-- Novo header -->
+	
+	    <xsl:template name="NovoHeader">    
+          
+                <div class="container">
+				 <ul class="nav navbar-nav pull-left">
+				 <div class="row">
+				  <div class="col-xs-12">
                         <xsl:choose>
                             <xsl:when test="count(/dri:document/dri:meta/dri:pageMeta/dri:trail) > 1">
                                 <div class="breadcrumb dropdown visible-xs">
@@ -523,6 +537,73 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </div>
+					 </div>
+				 </ul>
+				
+                    <div class="navbar-header pull-right hidden-xs"> 
+                        <ul class="nav navbar-nav pull-left">
+                              <xsl:call-template name="languageSelection"/>
+                        </ul>                           
+                    </div>
+                </div>
+      
+
+       
+
+    </xsl:template>
+
+
+    <!-- The header (distinct from the HTML head element) contains the title, subtitle, login box and various
+        placeholders for header images -->
+    <xsl:template name="buildTrail">
+        <div class="trail-wrapper">
+            <div class="container">
+                <div class="row">
+                    <!--TODO-->
+                    <!--<div class="col-xs-9 col-sm-10 col-md-12">-->
+                    <div class="col-xs-12">
+                        <xsl:choose>
+						 <xsl:when test="starts-with($request-uri, 'page/sobre')">
+                                <ul class="breadcrumb">								
+                                    <xsl:text>Sobre</xsl:text>
+                                </ul>
+                            </xsl:when>
+                            <xsl:when test="starts-with($request-uri, 'page/faq')">
+                              <xsl:text>faq</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="count(/dri:document/dri:meta/dri:pageMeta/dri:trail) > 1">
+                                <div class="breadcrumb dropdown visible-xs">
+                                    <a id="trail-dropdown-toggle" href="#" role="button" class="dropdown-toggle"
+                                       data-toggle="dropdown">
+                                        <xsl:variable name="last-node"
+                                                      select="/dri:document/dri:meta/dri:pageMeta/dri:trail[last()]"/>
+                                        <xsl:choose>
+                                            <xsl:when test="$last-node/i18n:*">
+                                                <xsl:apply-templates select="$last-node/*"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:apply-templates select="$last-node/text()"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                        <xsl:text>&#160;</xsl:text>
+                                        <b class="caret"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="trail-dropdown-toggle">
+                                        <xsl:apply-templates select="/dri:document/dri:meta/dri:pageMeta/dri:trail"
+                                                             mode="dropdown"/>
+                                    </ul>
+                                </div>
+                                <ul class="breadcrumb hidden-xs">
+                                    <xsl:apply-templates select="/dri:document/dri:meta/dri:pageMeta/dri:trail"/>
+                                </ul>
+                            </xsl:when>							
+                            <xsl:otherwise>
+                                <ul class="breadcrumb">
+                                    <xsl:apply-templates select="/dri:document/dri:meta/dri:pageMeta/dri:trail"/>
+                                </ul>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </div>
                 </div>
             </div>
         </div>
@@ -538,6 +619,30 @@
             </xsl:if>
             <!-- Determine whether we are dealing with a link or plain text trail link -->
             <xsl:choose>
+			 <xsl:when test="starts-with($request-uri, 'page/sobre')">
+                               			 <a >
+                                <xsl:attribute name="href">
+                                    <xsl:value-of
+                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                    
+                                </xsl:attribute>                               
+							  <xsl:text>Página Inicial</xsl:text>
+                            </a>    				
+                                    <xsl:text> / Sobre</xsl:text>
+                               
+                            </xsl:when>
+							
+							 <xsl:when test="starts-with($request-uri, 'page/faq')">
+							 <a >
+                                <xsl:attribute name="href">
+                                    <xsl:value-of
+                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                    
+                                </xsl:attribute>                               
+							  <xsl:text>Página Inicial</xsl:text>
+                            </a>    				
+                              <xsl:text> / FAQ</xsl:text>
+                            </xsl:when>
                 <xsl:when test="./@target">
                     <a>
                         <xsl:attribute name="href">
@@ -650,12 +755,14 @@
         <footer>
                <div class="row">
                     <hr/>
-					<div class="col-xs-1 col-sm-1">
+					<div class=" col-sm-12">
 					</div>
-                    <div class="col-xs-6 col-sm-7">
+					 <div class="col-sm-2">
+					 </div>
+                    <div class="col-sm-6">
 				
                         <div>
-                            <a href="http://www.tse.jus.br/" target="_blank">Tribunal Superior Eleitoral</a> 
+                            <a href="http://www.ibict.br/" target="_blank">Instituto Brasileiro de Informação em Ciência e Tecnologia</a> 
                         </div>
                         <div class="hidden-print">
                             <a>
@@ -677,12 +784,12 @@
                             </a>
                         </div>						
                     </div>
-                    <div class="col-xs-4 col-sm-3 hidden-print">
+                    <div class=" col-sm-4 hidden-print">
                         <div >
                             <span class="theme-by"></span>
                             <br/>
-                            <a title="Tribunal Superior Eleitoral" target="_blank" href="http://www.tse.jus.br/">
-                                <img alt="@mire NV" src="{concat($theme-path, '/images/@tselogo-small.png')}"/>
+                            <a title="Instituto Brasileiro de Informação em Ciência e Tecnologia" target="_blank" href="http://www.ibict.br/">
+                                <img alt="@mire NV" src="{concat($theme-path, '/images/logoIBICT60.png')}"/>
                             </a>
                         </div>
 
@@ -715,7 +822,27 @@
     -->
     <xsl:template match="dri:body">
         <div>
-            <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']">
+             <xsl:choose>
+            <xsl:when test="(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request' and @qualifier='URI'])=''">
+               <div class="hero-unit">
+				<xsl:call-template name="corpo"/>
+                    </div>
+            </xsl:when>
+			<xsl:when test="starts-with($request-uri, 'page/sobre')">
+					 <div class="hero-unit">
+                        <xsl:call-template name="sobre"/>
+						</div>
+                    </xsl:when>
+                    <xsl:when test="starts-with($request-uri, 'page/faq')">
+					   <div class="hero-unit">
+                        <xsl:call-template name="faq"/>
+						</div>
+                    </xsl:when>
+
+            <xsl:otherwise>
+
+
+		   <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']">
                 <div class="alert">
                     <button type="button" class="close" data-dismiss="alert">&#215;</button>
                     <xsl:copy-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']/node()"/>
@@ -736,12 +863,167 @@
                 </xsl:when>
                 <!-- Otherwise use default handling of body -->
                 <xsl:otherwise>
-                    <xsl:apply-templates />
+                     <xsl:apply-templates /> 
                 </xsl:otherwise>
             </xsl:choose>
+			
+			
+			 </xsl:otherwise>
+            </xsl:choose>
+			
 
         </div>
-    </xsl:template>
+    </xsl:template>	
+
+	
+	
+	 <!-- Comente para habilitar a view de comunidades na front-page  -->	    	
+	<xsl:template match="dri:div[@id='aspect.artifactbrowser.CommunityBrowser.div.comunity-browser']">
+  <xsl:if test="starts-with($request-uri, 'community-list')">
+    <xsl:copy>
+      <xsl:apply-templates select="node() | @*"/>
+    </xsl:copy>
+  </xsl:if>
+</xsl:template>
+	
+	<!-- Template da front-page -->
+	 <xsl:template name="corpo">	 
+	 
+	 
+	  <div class="ds-static-div primary">
+		<h2>
+		<subtitulo>Pesquisa</subtitulo>
+		</h2>
+		  <br/><br/><br/>
+		<xsl:call-template name="pesquisa"/>
+		
+			<br/>
+		    <br/>
+			<br/>		    
+		
+		</div>
+		
+		 <div class="ds-static-div primary">
+		<h2>
+		<subtitulo>A BIBLIOTECA</subtitulo>
+		</h2>
+		  <br/><br/>
+		
+		<p> Esta Biblioteca Digital foi organizada a partir de consultas a grupos de estudo e especialistas sobre fontes e temas relacionados com a preservação digital, organizados aqui como coleções de fontes de informação 
+		nacionais e internacionais, com a finalidade de integrar em uma única busca o maior número de recursos de informação publicados na Internet em vários formatos.
+		<a >
+                                <xsl:attribute name="href">
+                                    <xsl:value-of
+                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                    <xsl:text>/page/sobre</xsl:text>
+                                </xsl:attribute>
+                                <text>Saiba mais</text>
+                            </a>
+							</p>
+		
+		  <br/>  <br/>
+		</div>
+		
+		
+		
+		
+		 <xsl:apply-templates/> 
+		 
+		 
+		 
+	
+	
+	
+	  </xsl:template>	
+	  
+	  
+	   <xsl:template name="pesquisa">
+	   <xsl:if test="not(contains(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI'], 'discover'))">
+                <div id="ds-search-option" class="ds-option-set">                   
+                    <form id="ds-search-form" class="" method="post">
+                        <xsl:attribute name="action">
+                            <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath']"/>
+                            <xsl:value-of
+                                    select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='search'][@qualifier='simpleURL']"/>
+                        </xsl:attribute>
+                        <fieldset>
+                            <div class="input-group">
+                                <input class="ds-text-field form-control" type="text" placeholder="xmlui.general.search"
+                                       i18n:attr="placeholder">
+                                    <xsl:attribute name="name">
+                                        <xsl:value-of
+                                                select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='search'][@qualifier='queryField']"/>
+                                    </xsl:attribute>
+                                </input>
+                                <span class="input-group-btn">
+                                    <button class="ds-button-field btn btn-primary" title="xmlui.general.go" i18n:attr="title">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"/>
+                                        <xsl:attribute name="onclick">
+                                                    <xsl:text>
+                                                        var radio = document.getElementById(&quot;ds-search-form-scope-container&quot;);
+                                                        if (radio != undefined &amp;&amp; radio.checked)
+                                                        {
+                                                        var form = document.getElementById(&quot;ds-search-form&quot;);
+                                                        form.action=
+                                                    </xsl:text>
+                                            <xsl:text>&quot;</xsl:text>
+                                            <xsl:value-of
+                                                    select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath']"/>
+                                            <xsl:text>/handle/&quot; + radio.value + &quot;</xsl:text>
+                                            <xsl:value-of
+                                                    select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='search'][@qualifier='simpleURL']"/>
+                                            <xsl:text>&quot; ; </xsl:text>
+                                                    <xsl:text>
+                                                        }
+                                                    </xsl:text>
+                                        </xsl:attribute>
+                                    </button>
+                                </span>
+                            </div>
+
+                            <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='focus'][@qualifier='container']">
+                                <div class="radio">
+                                    <label>
+                                        <input id="ds-search-form-scope-all" type="radio" name="scope" value=""
+                                               checked="checked"/>
+                                        <i18n:text>xmlui.dri2xhtml.structural.search</i18n:text>
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input id="ds-search-form-scope-container" type="radio" name="scope">
+                                            <xsl:attribute name="value">
+                                                <xsl:value-of
+                                                        select="substring-after(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='focus'][@qualifier='container'],':')"/>
+                                            </xsl:attribute>
+                                        </input>
+                                        <xsl:choose>
+                                            <xsl:when
+                                                    test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='focus'][@qualifier='containerType']/text() = 'type:community'">
+                                                <i18n:text>xmlui.dri2xhtml.structural.search-in-community</i18n:text>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <i18n:text>xmlui.dri2xhtml.structural.search-in-collection</i18n:text>
+                                            </xsl:otherwise>
+
+                                        </xsl:choose>
+                                    </label>
+                                </div>
+                            </xsl:if>
+							       </fieldset>
+                    </form>
+					 <a>
+                                <xsl:attribute name="href">
+                                    <xsl:value-of
+                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                    <xsl:text>/discover</xsl:text>
+                                </xsl:attribute>
+                                <i18n:text>xmlui.ArtifactBrowser.AdvancedSearch.title</i18n:text>
+                            </a>
+                </div>
+            </xsl:if>
+	
+	</xsl:template>	
 
 
     <!-- Currently the dri:meta element is not parsed directly. Instead, parts of it are referenced from inside
@@ -831,19 +1113,19 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template name="languageSelection">
+    <xsl:template name="languageSelection">	
         <xsl:if test="count(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='page'][@qualifier='supportedLocale']) &gt; 1">
             <li id="ds-language-selection" class="dropdown">
                 <xsl:variable name="active-locale" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='page'][@qualifier='currentLocale']"/>
-                <a id="language-dropdown-toggle" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="hidden-xs">
-                        <xsl:value-of
-                                select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='supportedLocale'][@qualifier=$active-locale]"/>
-                        <xsl:text>&#160;</xsl:text>
-                        <b class="caret"/>
-                    </span>
-                </a>
-                <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="language-dropdown-toggle" data-no-collapse="true">
+                <a id="language-dropdown-toggle" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> 
+                    <span class="hidden-xs"> 
+                       <xsl:value-of 
+                                 select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='supportedLocale'][@qualifier=$active-locale]"/> 
+                       <xsl:text>&#160;</xsl:text> 
+                        <b class="caret"/> 
+                    </span> 
+              </a> 
+             <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="language-dropdown-toggle" data-no-collapse="true">
                     <xsl:for-each
                             select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='page'][@qualifier='supportedLocale']">
                         <xsl:variable name="locale" select="."/>
@@ -864,9 +1146,74 @@
                             </a>
                         </li>
                     </xsl:for-each>
-                </ul>
+                </ul> 
+	
             </li>
         </xsl:if>
     </xsl:template>
+	
+	
+	<!-- Página sobre -->
+	
+	 <xsl:template name="sobre">
+	  
+	 <h2>
+	<subtitulo>Rede Cariniana</subtitulo>
+	 </h2>
+	 <br/>
+	<div class="justify">
+<p> A Rede Cariniana surgiu da necessidade de se criar no Instituto Brasileiro de Informação em Ciência e Tecnologia – Ibict uma rede de 
+serviços de preservação digital de documentos eletrônicos brasileiros, com o objetivo de garantir seu acesso contínuo a longo prazo.</p>
+
+<p>O projeto de implantação da Rede foi elaborado baseando-se em uma infraestrutura 
+descentralizada, utilizando recursos de computação distribuída. Uma rede de preservação digital distribuída precisa da 
+participação das instituições detentoras desses documentos e de sua infraestrutura, em um ambiente padronizado e de segurança 
+que garanta o acesso permanente e o armazenamento monitorado dos documentos digitais. Com o apoio da FINEP, em janeiro de 2013
+ o Instituto aderiu ao Programa LOCKSS¹ da Stanford University.</p>
+
+<p>A participação do Instituto em iniciativas como a do LOCKSS representa uma contribuição significativa para a informação científica no Brasil, que,
+ por conseguinte irá habilitar a preservação do conteúdo de publicações em redes internacionais de instituições participantes da Iniciativa LOCKSS. 
+ Inicialmente as atividades foram desenvolvidas em parceria com seis universidades brasileiras com o apoio de seus respectivos centros de informação e de
+ informática. A Rede estruturou inicialmente o serviço de armazenamento dos periódicos eletrônicos das instituições parceiras do projeto, que utilizam a plataforma OJS/SEER².</p>
+
+<p>O serviço foi estendido a instituições com publicações de acesso livre, foram incluídos cerca de 1000 títulos de 
+periódicos. A etapa seguinte tem o objetivo de ampliar os serviços da Rede, incluindo a preservação de publicações 
+eletrônicas no software DSpace³, tais como livros, teses e dissertações em formato eletrônico. As atividades estão
+ sendo orientadas à formação de recursos humanos e a facilitar a automatização dos processos de identificação, digitalização, armazenamento, validação e conversão para novos formatos digitais.</p>
+
+<p>O desenvolvimento de uma rede de serviços de preservação digital promove o compartilhamento de estudos e pesquisas, além da 
+integração de conteúdos da memória institucional digital de forma consorciada e federada.</p>
+<br/><br/>
+
+<a href="http://cariniana.ibict.br/" target="_blank">Acesse o canal da Rede Cariniana</a> 
+
+	</div>
+		<br/><br/>
+
+	  </xsl:template>
+	  
+	  <xsl:template name="faq">
+	   <h2>
+	<subtitulo> Biblioteca Digital da Cariniana</subtitulo>
+	 </h2>
+	 <br/> <br/>
+
+
+	 <div class="justify">
+	 <p><faqT onclick="ver('faq1');">1.	Quem alimenta a biblioteca digital da Cariniana?</faqT></p>
+<div id="faq1" style="display:none"><p>Colaboram com a formação do acervo digital da Biblioteca digital profissionais das áreas da Ciência da Informação, 
+Biblioteconomia, Arquivologia e Museologia, assim como, da Ciência da Computação e participantes do grupo de pesquisa "Estudos e Práticas de Preservação Digital" </p>
+<br/></div>
+<p><faqT onclick="ver('faq2');">2.	Qual é o objetivo da BD da Cariniana?</faqT></p>
+<div id="faq2" style="display:none"><p>A proposta é seguir as experiências de divulgação na área de 
+preservação digital realizadas por instituições reconhecidas internacionalmente, tais como a Library of Congress e outras 
+bibliotecas nacionais, por elas disseminarem  informações sobre teoria e praticas, normas e padrões internacionalmente aceitos. .</p>
+</div>
+<p><faqT onclick="ver('faq3');">3.	Quais os contatos da Cariniana?</faqT></p>
+<div id="faq3" style="display:none"><p>Utilize os seguintes canais para entrar em contato com a equipe da Rede Cariniana:</p>
+<p>•	E-mail: cariniana@ibict.br</p>
+<p>•	Telefone: (61) 3217-6100</p></div>
+</div>
+	  </xsl:template>
 
 </xsl:stylesheet>

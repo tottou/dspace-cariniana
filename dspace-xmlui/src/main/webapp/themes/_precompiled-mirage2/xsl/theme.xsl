@@ -42,6 +42,7 @@
     <xsl:import href="aspect/artifactbrowser/browse.xsl"/>
     <xsl:import href="aspect/discovery/discovery.xsl"/>
     <xsl:import href="aspect/artifactbrowser/one-offs.xsl"/>
+	<xsl:import href="aspect/artifactbrowser/contact.xsl"/>
     <xsl:output indent="yes"/>
 
 

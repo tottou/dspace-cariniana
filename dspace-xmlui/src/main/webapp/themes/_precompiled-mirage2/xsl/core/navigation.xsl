@@ -1,13 +1,4 @@
 
-<!--
-    Rendering specific to the navigation (options)
-
-    Author: art.lowel at atmire.com
-    Author: lieven.droogmans at atmire.com
-    Author: ben at atmire.com
-    Author: Alexey Maslov
-
--->
 
 <xsl:stylesheet xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
 	xmlns:dri="http://di.tamu.edu/DRI/1.0/"
@@ -35,10 +26,9 @@
     <!-- TODO: figure out why i18n tags break the go button -->
     <xsl:template match="dri:options">
         <div id="ds-options" class="word-break">
-            <xsl:if test="not(contains(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI'], 'discover'))">
-                <div id="ds-search-option" class="ds-option-set">
-                    <!-- The form, complete with a text box and a button, all built from attributes referenced
-                 from under pageMeta. -->
+           <!--    descomentar para voltar seach
+		   <xsl:if test="not(contains(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI'], 'discover'))">
+                <div id="ds-search-option" class="ds-option-set">                   
                     <form id="ds-search-form" class="" method="post">
                         <xsl:attribute name="action">
                             <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath']"/>
@@ -112,10 +102,11 @@
                         </fieldset>
                     </form>
                 </div>
-            </xsl:if>
+             </xsl:if> descomentar para voltar seach -->
             <xsl:apply-templates/>
+			<xsl:call-template name="newBlock"/>
             <!-- DS-984 Add RSS Links to Options Box -->
-            <xsl:if test="count(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']) != 0">
+       <!--      <xsl:if test="count(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']) != 0">
                 <div>
                     <h6 class="ds-option-set-head">
                         <i18n:text>xmlui.feed.header</i18n:text>
@@ -125,7 +116,7 @@
                     </div>
                 </div>
 
-            </xsl:if>
+            </xsl:if> -->
         </div>
     </xsl:template>
 
@@ -156,9 +147,63 @@
             </a>
         </xsl:for-each>
     </xsl:template>
+	
+	
+	
+	
+	    <xsl:template name="newBlock">
+      
+           	
+		<h2>
+		<subtitulo>Contato</subtitulo>
+		</h2>
+	
+		
+		   <a class="list-group-item">
+                                <xsl:attribute name="href">
+                                    <xsl:value-of
+                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                    <xsl:text>/contact</xsl:text>
+                                </xsl:attribute>
+                                <i18n:text>xmlui.dri2xhtml.structural.contact-link</i18n:text>
+                            </a>
+                        
+						<!-- Foi solicitado retirar. Para reativar feedback, descomente -->
+                           <!--  <a class="list-group-item">
+                                <xsl:attribute name="href">
+                                    <xsl:value-of
+                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                    <xsl:text>/feedback</xsl:text>
+                                </xsl:attribute>
+                                <i18n:text>xmlui.dri2xhtml.structural.feedback-link</i18n:text>
+                            </a> -->
+		
+		<h2>
+		<subtitulo>Perguntas Frequentes</subtitulo>
+		</h2>
+		  <a class="list-group-item">
+                                <xsl:attribute name="href">
+                                    <xsl:value-of
+                                            select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+                                    <xsl:text>/page/faq</xsl:text>
+                                </xsl:attribute>
+                                <text>FAQ</text>
+                            </a>
+		<br/>
+	<!-- 	<h2>
+		<subtitulo>Ajuda</subtitulo>
+		</h2> -->		
+
+        <br/>
+		 <br/>
+		  <br/>
+		 <br/>
+    </xsl:template>
+	
 
     <xsl:template match="dri:options//dri:list">
-        <xsl:apply-templates select="dri:head"/>
+	
+         <xsl:apply-templates select="dri:head"/> 
         <xsl:apply-templates select="dri:item"/>
         <xsl:apply-templates select="dri:list"/>
     </xsl:template>
@@ -201,7 +246,7 @@
         </a>
     </xsl:template>
 
-    <xsl:template match="dri:options/dri:list/dri:head" priority="3">
+    <xsl:template match="dri:options/dri:list/dri:head" priority="3">	
         <xsl:call-template name="renderHead">
             <xsl:with-param name="class">ds-option-set-head</xsl:with-param>
         </xsl:call-template>

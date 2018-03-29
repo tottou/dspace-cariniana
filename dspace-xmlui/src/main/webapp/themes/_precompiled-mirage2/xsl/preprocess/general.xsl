@@ -99,7 +99,7 @@
                 <i18n:text catalogue="default">xmlui.general.dspace_home</i18n:text>
             </trail>
             <trail>
-                <xsl:text>About This Repository</xsl:text>
+                <xsl:text>Sobre este repositório</xsl:text>
             </trail>
         </pageMeta>
     </xsl:template>

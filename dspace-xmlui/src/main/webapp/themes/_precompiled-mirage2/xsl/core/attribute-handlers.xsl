@@ -95,7 +95,7 @@
                         <ul class="pagination pagination-lg">
                             <li>
                                 <xsl:attribute name="class">
-                                    <xsl:text>previous</xsl:text>
+                                    <xsl:text>anterior</xsl:text>
                                     <xsl:if test="not($prev-page)">
                                         <xsl:text> disabled</xsl:text>
                                     </xsl:if>
@@ -105,7 +105,7 @@
                                     <xsl:attribute name="href">
                                         <xsl:value-of select="$prev-page"/>
                                     </xsl:attribute>
-                                    <xsl:text>&#171; Previous</xsl:text>
+                                    <xsl:text>&#171; Anterior</xsl:text>
                                 </a>
                             </li>
                             <li>
@@ -120,7 +120,7 @@
                                     <xsl:attribute name="href">
                                         <xsl:value-of select="$next-page"/>
                                     </xsl:attribute>
-                                    <xsl:text>Next &#187;</xsl:text>
+                                    <xsl:text>Próximo &#187;</xsl:text>
                                 </a>
                             </li>
                         </ul>
